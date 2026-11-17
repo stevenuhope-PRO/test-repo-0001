@@ -172,7 +172,7 @@ FOOT = f"""</main>
   <div class="wrap">
     <div class="cols">
       <div class="foot-brand">
-        <img src="assets/img/crest.svg" alt="The Finchby crest" width="74" height="99">
+        <img src="assets/img/crest.svg" alt="The Finchby crest" width="74" height="101">
         <p><strong>Finchby</strong><br>{TAGLINE}<br><span class="small">AI visibility and website consulting for local businesses.</span></p>
       </div>
       <div>
@@ -466,7 +466,7 @@ BODY["about.html"] = """
 <section class="soft">
   <div class="wrap">
     <div class="grid-2" style="align-items:center">
-      <div class="center"><img src="assets/img/crest.svg" alt="The Finchby crest: a shield in three parts showing an owl, a wing and an anchor, framed by laurel branches, with a finch in flight above, and the name Finchby on the scroll" width="300" height="403" style="width:300px"></div>
+      <div class="center"><img src="assets/img/crest.svg" alt="The Finchby crest: a shield in three parts showing an owl, a wing and an anchor, framed by laurel branches, with a finch in flight above, and the name Finchby on the scroll" width="300" height="409" style="width:300px"></div>
       <div>
         <p class="eyebrow">The crest</p>
         <h2>Where the finch comes from</h2>
