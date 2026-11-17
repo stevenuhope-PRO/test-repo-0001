@@ -70,17 +70,23 @@ NAME = "M10.80 -24.12L18.92 -24.12L18.40 -17.12L16.24 -17.12L15.80 -21.52L10.68 
 
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
-# Royal crown, set on the helm as on the Hope arms: a jewelled gold band with crosses
-# and pearls on its rim, a dark velvet cap, gold arches, and an orb and cross. Base at y=0.
-CROWN = f"""<path d="M-17 -7 C-18 -19 -10 -24 0 -24 C10 -24 18 -19 17 -7 Z" fill="{INK}"/>
-    <path d="M-16 -8 C-17 -18 -9 -23 -2 -20.5 L0 -19 L2 -20.5 C9 -23 17 -18 16 -8 M0 -9 V-19" fill="none" stroke-width="3.6"/>
-    <path d="M-16 -8 C-17 -18 -9 -23 -2 -20.5 L0 -19 L2 -20.5 C9 -23 17 -18 16 -8 M0 -9 V-19" fill="none" stroke="#fff" stroke-width="1.6"/>
-    <path d="M0 -6.5 L-2.4 -11.5 L-1 -10 L0 -12.6 L1 -10 L2.4 -11.5 Z M-15 -6.5 L-17 -10.6 L-15 -9.4 L-13 -10.6 Z M15 -6.5 L13 -10.6 L15 -9.4 L17 -10.6 Z" fill="url(#or)" stroke-width="1"/>
-    <circle cx="-7.5" cy="-9" r="1.6"/><circle cx="7.5" cy="-9" r="1.6"/>
-    <rect x="-19" y="-7" width="38" height="8" rx="1.5" fill="url(#or)"/>
-    <ellipse cx="-10.5" cy="-3" rx="2.5" ry="1.7"/><path d="M0 -5.6 L2.5 -3 L0 -.4 L-2.5 -3 Z"/><ellipse cx="10.5" cy="-3" rx="2.5" ry="1.7"/>
-    <circle cy="-24.5" r="3.4" fill="url(#or)"/>
-    <path d="M0 -28 V-35 M-2.8 -31.6 H2.8" fill="none" stroke-width="2.2"/>"""
+# Royal crown, after the carved royal arms of Scotland: a rim of ermine fur, a jewelled
+# gold circlet heightened with fleurs-de-lis and crosses, and a velvet cap within. Base at y=0.
+def _ermine(x, y):
+    return (f'<g transform="translate({x} {y}) scale(.55)" fill="{INK}" stroke="none"><circle cx="-1.3" cy="-2.6" r=".8"/>'
+            '<circle cx="1.3" cy="-2.6" r=".8"/><circle cy="-3.9" r=".8"/><path d="M0 -2 C-.6 0 -1.5 1.6 -1.9 2.6 L0 1.7 L1.9 2.6 C1.5 1.6 .6 0 0 -2 Z"/></g>')
+_FLEUR = ("M0 -11 C2.2 -9 2.4 -5.6 1 -2.6 H-1 C-2.4 -5.6 -2.2 -9 0 -11 Z "
+          "M-1 -3 C-2.6 -3.4 -5 -5 -4.6 -7.8 C-3.4 -7 -2 -5.8 -1.2 -4.6 Z M1 -3 C2.6 -3.4 5 -5 4.6 -7.8 C3.4 -7 2 -5.8 1.2 -4.6 Z "
+          "M-3 -2.6 H3 V-1 H-3 Z")
+_CROSS = "M-1.2 0 V-6.6 H-4.6 V-9 H-1.2 V-12.4 H1.2 V-9 H4.6 V-6.6 H1.2 V0 Z"
+CROWN = f"""<path d="M-15.5 -13 C-15.5 -20 -8 -23 0 -23 C8 -23 15.5 -20 15.5 -13 Z" fill="{INK}"/>
+    <g fill="url(#or)" stroke-width="1.1"><path d="{_FLEUR}" transform="translate(-10 -13.6) scale(1.3)"/><path d="{_FLEUR}" transform="translate(10 -13.6) scale(1.3)"/>
+    <path d="{_CROSS}" transform="translate(0 -14) scale(1.3)"/>
+    <path d="{_FLEUR}" transform="translate(-17.6 -13.4) scale(.8 1.1)"/><path d="{_FLEUR}" transform="translate(17.6 -13.4) scale(.8 1.1)"/></g>
+    <path d="M-18 -8.6 C-9 -10.4 9 -10.4 18 -8.6 L17.4 -14 C9 -15.6 -9 -15.6 -17.4 -14 Z" fill="url(#or)"/>
+    <ellipse cx="-9" cy="-11.6" rx="2" ry="1.3"/><path d="M0 -13.8 L2 -11.8 L0 -9.8 L-2 -11.8 Z"/><ellipse cx="9" cy="-11.6" rx="2" ry="1.3"/>
+    <path d="M-21 -1.4 C-22.4 -6 -20.6 -9.6 -17 -9.6 C-9 -11 9 -11 17 -9.6 C20.6 -9.6 22.4 -6 21 -1.4 C13 1.4 -13 1.4 -21 -1.4 Z"/>
+    {_ermine(-14, -4.2)}{_ermine(-5, -4.8)}{_ermine(5, -4.8)}{_ermine(14, -4.2)}"""
 
 # Royal helm, after the royal arms carved in Scotland: a tilting helm in profile facing
 # left, the same way as the finch, edged in gold, with a sight slit above a projecting
@@ -94,7 +100,7 @@ HELM = f"""<path d="{_HO}" fill="#fff" stroke-width="5.6"/>
     <path d="M-13 -38 C-4 -40 7 -39.4 15 -36" fill="none" stroke-width="1"/>"""
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, beneath a crowned royal helm with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
+  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, beneath a royal helm wearing an open crown, with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
   <defs>
     <!-- engraver's hatching: horizontal lines = blue, vertical lines = red, dots = gold -->
     <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="{INK}" stroke-width=".8"/></pattern>
@@ -139,7 +145,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role
   <g transform="translate(201 212) scale(1.35 1.2)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
     {HELM}
   </g>
-  <g transform="translate(198 154) scale(1.15)" fill="#fff" stroke="{INK}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+  <g transform="translate(198 155) scale(1.15)" fill="#fff" stroke="{INK}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
     {CROWN}
   </g>
 
