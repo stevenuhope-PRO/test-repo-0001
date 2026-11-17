@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--f3-bg:#0a0f1c;--f3-bg2:#0f1628;--f3-card:#131c33;--f3-line:#24304f;--f3-ink:#eef2fb;--f3-muted:#9aa7c4;--f3-a:#3ee6b0;--f3-b:#f7c948;--f3-grad:linear-gradient(100deg,#3ee6b0,#7cc8ff);--f3-head:"Space Grotesk",system-ui,sans-serif;--f3-sans:"Inter",system-ui,-apple-system,sans-serif;--f3-mono:"JetBrains Mono",ui-monospace,monospace}
+:root{--f3-bg:#ffffff;--f3-bg2:#f3f7fd;--f3-card:#ffffff;--f3-line:#dde5f1;--f3-ink:#0e1b36;--f3-muted:#55627c;--f3-a:#1a63e0;--f3-b:#b45309;--f3-grad:linear-gradient(100deg,#1a63e0,#0a9d94);--f3-head:"Space Grotesk",system-ui,sans-serif;--f3-sans:"Inter",system-ui,-apple-system,sans-serif;--f3-mono:"JetBrains Mono",ui-monospace,monospace}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--f3-bg)}
 .f3{font-family:var(--f3-sans);color:var(--f3-ink);font-size:17px;line-height:1.65;background:var(--f3-bg);box-sizing:border-box}
@@ -33,28 +33,28 @@ body{margin:0;background:var(--f3-bg)}
 .f3-lede{font-size:19px;color:var(--f3-muted);max-width:58ch;margin-top:20px!important}
 .f3-btn{display:inline-block;padding:15px 26px;border-radius:12px;font-weight:600;font-size:16px;border:1px solid var(--f3-line);transition:transform .15s,border-color .15s,box-shadow .15s;cursor:pointer;font-family:inherit;color:var(--f3-ink)}
 .f3-btn:hover{transform:translateY(-2px);border-color:var(--f3-a)}
-.f3-btn--main{background:var(--f3-grad);color:#06121a!important;border-color:transparent}
-.f3-btn--main:hover{box-shadow:0 12px 34px -10px rgba(62,230,176,.55)}
+.f3-btn--main{background:var(--f3-grad);color:#fff!important;border-color:transparent}
+.f3-btn--main:hover{box-shadow:0 12px 30px -10px rgba(26,99,224,.55)}
 /* header */
-.f3-head{position:sticky;top:0;z-index:50;background:rgba(10,15,28,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--f3-line)}
+.f3-head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--f3-line)}
 .f3-head .f3-wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
 .f3-logo{display:flex;align-items:center;gap:10px;font-family:var(--f3-head);font-size:23px;font-weight:700}
-.f3-logo svg{width:28px;height:28px;color:var(--f3-b)}
+.f3-logo svg{width:28px;height:28px;color:#f5a300}
 .f3-logo i{font-style:normal;color:var(--f3-a)}
 .f3-nav{display:flex;align-items:center;gap:30px;font-size:15px;font-weight:500;color:var(--f3-muted)}
 .f3-nav a:hover{color:var(--f3-ink)}
 .f3-nav .f3-btn{padding:10px 18px;font-size:15px}
 .f3-burger{display:none;background:none;border:0;font-size:26px;color:var(--f3-ink);cursor:pointer}
 /* hero */
-.f3-hero{padding:96px 0 80px;text-align:center;background:radial-gradient(900px 480px at 50% -10%,rgba(62,230,176,.17),transparent 70%),var(--f3-bg)}
-.f3-hero .f3-lede{margin-left:auto;margin-right:auto}
-.f3-hero h1{max-width:15ch;margin:0 auto}
-.f3-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:36px}
-.f3-panel{margin:64px auto 0;max-width:860px;background:var(--f3-card);border:1px solid var(--f3-line);border-radius:20px;padding:28px 30px;text-align:left;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+.f3-hero{padding:84px 0 88px;background:linear-gradient(180deg,#eaf2fe 0%,#fff 100%)}
+.f3-hero .f3-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.f3-hero h1{font-size:clamp(40px,5vw,66px)}
+.f3-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.f3-panel{background:var(--f3-card);border:1px solid var(--f3-line);border-radius:20px;padding:28px 30px;box-shadow:0 40px 70px -40px rgba(14,27,54,.35)}
 .f3-panel__top{display:flex;justify-content:space-between;align-items:center;font-family:var(--f3-mono);font-size:12.5px;color:var(--f3-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
 .f3-panel__top b{color:var(--f3-b);font-weight:500}
 .f3-row{display:grid;grid-template-columns:150px 1fr 54px;gap:16px;align-items:center;padding:9px 0;font-size:15px}
-.f3-bar{height:10px;border-radius:99px;background:#1c2744;overflow:hidden}
+.f3-bar{height:10px;border-radius:99px;background:#e4ebf6;overflow:hidden}
 .f3-bar span{display:block;height:100%;border-radius:99px;background:var(--f3-grad)}
 .f3-row em{font-style:normal;font-family:var(--f3-mono);font-size:13px;color:var(--f3-muted);text-align:right}
 /* stats strip */
@@ -63,7 +63,7 @@ body{margin:0;background:var(--f3-bg)}
 /* compare */
 .f3-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px}
 .f3-col{border:1px solid var(--f3-line);border-radius:20px;padding:32px;background:var(--f3-card)}
-.f3-col--new{border-color:var(--f3-a);background:linear-gradient(180deg,rgba(62,230,176,.09),transparent 60%),var(--f3-card)}
+.f3-col--new{border-color:var(--f3-a);background:linear-gradient(180deg,rgba(26,99,224,.07),transparent 60%),var(--f3-card)}
 .f3-col ul{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px;color:var(--f3-muted);font-size:16px}
 .f3-col li{padding-left:26px;position:relative}
 .f3-col li::before{content:"–";position:absolute;left:0}
@@ -76,7 +76,7 @@ body{margin:0;background:var(--f3-bg)}
 .f3-svc__k{font-family:var(--f3-mono);font-size:12px;color:var(--f3-a);border:1px solid var(--f3-line);border-radius:6px;padding:3px 8px;display:inline-block;margin-bottom:16px}
 .f3-svc p{color:var(--f3-muted);font-size:15.5px;margin-top:10px}
 .f3-svc ul{list-style:none;padding:0;margin:16px 0 0;font-size:14px;color:var(--f3-muted);display:flex;flex-wrap:wrap;gap:6px}
-.f3-svc li{background:#1a2440;border-radius:6px;padding:3px 9px}
+.f3-svc li{background:#eef3fb;border-radius:6px;padding:3px 9px}
 .f3-svc--wide{grid-column:span 3;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;border-color:var(--f3-b)}
 .f3-svc--wide .f3-svc__k{color:var(--f3-b)}
 /* process */
@@ -89,7 +89,7 @@ body{margin:0;background:var(--f3-bg)}
 /* plans */
 .f3-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
 .f3-plan{background:var(--f3-card);border:1px solid var(--f3-line);border-radius:20px;padding:34px;display:flex;flex-direction:column}
-.f3-plan--pop{border-color:var(--f3-a);box-shadow:0 0 0 1px var(--f3-a),0 30px 60px -30px rgba(62,230,176,.35)}
+.f3-plan--pop{border-color:var(--f3-a);box-shadow:0 0 0 1px var(--f3-a),0 30px 60px -30px rgba(26,99,224,.3)}
 .f3-plan__for{font-family:var(--f3-mono);font-size:12px;color:var(--f3-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
 .f3-plan__price{font-family:var(--f3-head);font-size:38px;font-weight:700;margin:14px 0 2px}
 .f3-plan__price small{font-family:var(--f3-sans);font-size:15px;font-weight:400;color:var(--f3-muted)}
@@ -109,9 +109,21 @@ body{margin:0;background:var(--f3-bg)}
 .f3-faq details p{margin-top:12px;color:var(--f3-muted);font-size:16px}
 /* contact */
 .f3-contact .f3-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.f3-contact ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px;font-size:16px}
-.f3-contact li{padding-left:28px;position:relative}
-.f3-contact li::before{content:"✓";position:absolute;left:0;color:var(--f3-a);font-weight:700}
+.f3-checks{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px;font-size:16px}
+.f3-checks li{padding-left:28px;position:relative}
+.f3-checks li::before{content:"✓";position:absolute;left:0;color:var(--f3-a);font-weight:700}
+.f3-svc,.f3-plan,.f3-col,.f3-faq details,.f3-form,.f3-inds span{box-shadow:0 1px 3px rgba(14,27,54,.06)}
+/* plan comparison table */
+.f3-table-wrap{margin-top:40px;overflow-x:auto;border:1px solid var(--f3-line);border-radius:18px;background:var(--f3-card)}
+.f3-table{width:100%;min-width:640px;border-collapse:collapse;font-size:15.5px}
+.f3-table caption{text-align:left;padding:22px 24px 6px;font-family:var(--f3-head);font-size:21px;font-weight:600}
+.f3-table th,.f3-table td{padding:13px 24px;border-top:1px solid var(--f3-line);text-align:center}
+.f3-table thead th{border-top:0;font-family:var(--f3-head);font-size:15px}
+.f3-table th:first-child,.f3-table td:first-child{text-align:left}
+.f3-table tbody th{font-weight:500}
+.f3-table td{color:var(--f3-muted)}
+.f3-table td.y{color:var(--f3-a);font-weight:700}
+.f3-table .pop{background:rgba(26,99,224,.05)}
 .f3-form{background:var(--f3-card);border:1px solid var(--f3-line);border-radius:20px;padding:32px;display:grid;gap:14px}
 .f3-form label{font-size:14px;font-weight:600;display:grid;gap:6px}
 .f3-form input,.f3-form select,.f3-form textarea{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--f3-line);border-radius:10px;background:var(--f3-bg);color:var(--f3-ink);width:100%}
@@ -126,8 +138,9 @@ body{margin:0;background:var(--f3-bg)}
 .f3-foot__legal{grid-column:1/-1;border-top:1px solid var(--f3-line);padding-top:22px;margin-top:16px;font-size:14px}
 @media(max-width:960px){
 .f3-sec{padding:68px 0}
-.f3-services,.f3-plans,.f3-compare,.f3-contact .f3-wrap{grid-template-columns:1fr}
-.f3-contact .f3-wrap{gap:40px}
+.f3-services,.f3-plans,.f3-compare,.f3-contact .f3-wrap,.f3-hero .f3-wrap{grid-template-columns:1fr}
+.f3-contact .f3-wrap,.f3-hero .f3-wrap{gap:40px}
+.f3-hero{padding:56px 0 64px}
 .f3-svc--wide{grid-column:auto;grid-template-columns:1fr}
 .f3-steps{grid-template-columns:1fr 1fr}
 .f3-step{border-bottom:1px solid var(--f3-line)}
@@ -161,12 +174,15 @@ body{margin:0;background:var(--f3-bg)}
 
 <section class="f3 f3-hero" id="top">
   <div class="f3-wrap">
+    <div>
     <span class="f3-tag">SEO + GEO agency</span>
     <h1>Rank in search. <span class="f3-grad">Get cited by AI.</span></h1>
     <p class="f3-lede">Finchby is the SEO agency built for how people search now. We make your brand the one Google ranks and the one ChatGPT, Gemini and Perplexity name in their answers.</p>
     <div class="f3-cta">
       <a class="f3-btn f3-btn--main" href="#contact">Get my free AI visibility score</a>
       <a class="f3-btn" href="#services">Explore services</a>
+    </div>
+    <ul class="f3-checks"><li>One team for SEO and AI search</li><li>A clear 90-day roadmap before any retainer</li><li>Reporting tied to leads and revenue</li></ul>
     </div>
     <div class="f3-panel" role="img" aria-label="Sample AI visibility report showing how often a brand is mentioned across search and AI engines">
       <div class="f3-panel__top"><span>AI visibility report · yourbrand.com</span><b>Sample data</b></div>
@@ -239,6 +255,25 @@ body{margin:0;background:var(--f3-bg)}
       <div class="f3-plan f3-plan--pop"><div class="f3-plan__for" style="color:var(--f3-a)">Most popular</div><h3>Growth</h3><div class="f3-plan__price">$3,500 <small>/ month</small></div><ul><li>Everything in Audit &amp; Roadmap</li><li>Monthly technical and on-page work</li><li>4 expert content pieces per month</li><li>Schema and entity optimization</li><li>AI visibility tracking dashboard</li></ul><a class="f3-btn f3-btn--main" href="#contact">Talk to us</a></div>
       <div class="f3-plan"><div class="f3-plan__for">Competitive markets</div><h3>Authority</h3><div class="f3-plan__price">Custom</div><ul><li>Everything in Growth</li><li>Digital PR and link building</li><li>Local or e-commerce SEO at scale</li><li>Dedicated strategist</li><li>Quarterly executive reviews</li></ul><a class="f3-btn" href="#contact">Request a proposal</a></div>
     </div>
+    <div class="f3-table-wrap">
+      <table class="f3-table">
+        <caption>Compare what's included</caption>
+        <thead><tr><th scope="col">Deliverable</th><th scope="col">Audit &amp; Roadmap</th><th scope="col" class="pop">Growth</th><th scope="col">Authority</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Technical SEO audit</th><td class="y">✓</td><td class="y pop">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">AI search visibility audit</th><td class="y">✓</td><td class="y pop">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Prioritized 90-day roadmap</th><td class="y">✓</td><td class="y pop">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Monthly technical and on-page work</th><td>–</td><td class="y pop">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Expert content pieces</th><td>–</td><td class="pop">4 per month</td><td>Custom</td></tr>
+          <tr><th scope="row">Schema and entity optimization</th><td>–</td><td class="y pop">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">AI visibility tracking dashboard</th><td>–</td><td class="y pop">✓</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Digital PR and link building</th><td>–</td><td class="pop">–</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Local or e-commerce SEO at scale</th><td>–</td><td class="pop">–</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Dedicated strategist</th><td>–</td><td class="pop">–</td><td class="y">✓</td></tr>
+          <tr><th scope="row">Reporting</th><td>One-time report</td><td class="pop">Monthly</td><td>Monthly + quarterly review</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -271,7 +306,7 @@ body{margin:0;background:var(--f3-bg)}
       <span class="f3-tag">Free snapshot</span>
       <h2>Find out what AI says about <span class="f3-grad">your brand</span>.</h2>
       <p class="f3-lede">Tell us your website. We'll send back a short AI visibility snapshot within two business days.</p>
-      <ul><li>Where you appear across search and AI assistants</li><li>Which competitors are cited instead of you</li><li>Three quick wins you can act on right away</li></ul>
+      <ul class="f3-checks"><li>Where you appear across search and AI assistants</li><li>Which competitors are cited instead of you</li><li>Three quick wins you can act on right away</li></ul>
     </div>
     <!-- In WordPress: replace with the Elementor Form widget -->
     <form class="f3-form" action="#" method="post">

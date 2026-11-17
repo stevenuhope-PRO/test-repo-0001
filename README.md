@@ -5,7 +5,7 @@ Two home page prototypes for Finchby, an SEO agency for the AI search era.
 | Version | Direction | Preview | Elementor import |
 |---|---|---|---|
 | V2 | Light, editorial, trust-led (cream, forest green, goldfinch yellow, serif headings) | `v2/index.html` | `elementor/finchby-v2-home.json` |
-| V3 | Dark, technical, product-led (navy, mint gradient, 10 services, comparison and industries sections) | `v3/index.html` | `elementor/finchby-v3-home.json` |
+| V3 | Light, conversion-led (white, blue accent, 10 services, plan comparison table, industries section) | `v3/index.html` | `elementor/finchby-v3-home.json` |
 
 Open either `index.html` in a browser to preview. Each is one self-contained file.
 
