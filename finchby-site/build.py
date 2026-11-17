@@ -116,7 +116,7 @@ def head(fn):
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Finchby, home">
-      <img src="assets/img/finch.svg" alt="" width="31" height="38">
+      <img src="assets/img/finch.svg" alt="" width="30" height="40">
       <span>Finchby</span>
     </a>
     <nav class="nav" aria-label="Primary">
@@ -466,12 +466,12 @@ BODY["about.html"] = """
 <section class="soft">
   <div class="wrap">
     <div class="grid-2" style="align-items:center">
-      <div class="center"><img src="assets/img/crest.svg" alt="The Finchby crest: a shield in three parts showing an owl, a wing and a torch, framed by laurel branches, with a finch in flight above and the motto Grip Fast" width="300" height="403" style="width:300px"></div>
+      <div class="center"><img src="assets/img/crest.svg" alt="The Finchby crest: a shield in three parts showing an owl, a wing and an anchor, framed by laurel branches, with a finch in flight above and the motto Grip Fast" width="300" height="403" style="width:300px"></div>
       <div>
         <p class="eyebrow">The crest</p>
         <h2>Where the finch comes from</h2>
         <p>The finch is small, quick and precise, which is how we like to work. It's our logo, and it sits at the top of the crest.</p>
-        <p>The shield is divided into three parts, one for each value we work by. The owl stands for <strong>wisdom</strong>, the wing for <strong>agility</strong> as AI changes, and the torch for <strong>integrity</strong>: honest advice, held up in plain view.</p>
+        <p>The shield is divided into three parts, one for each value we work by. The owl stands for <strong>wisdom</strong>, the wing for <strong>agility</strong> as AI changes, and the anchor for <strong>integrity</strong>: advice you can trust to hold steady.</p>
         <p>The rest borrows from the founder's Scottish family heritage. The chevron comes from the arms of Hope, and the three buckles and the motto <em>Grip Fast</em> come from Leslie. The laurel branches are the long-standing mark of work judged on merit.</p>
         <p class="small">The crest is a company emblem inspired by those family arms, not an official grant of arms.</p>
       </div>

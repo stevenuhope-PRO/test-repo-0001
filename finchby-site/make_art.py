@@ -7,47 +7,40 @@ INK, TINT = "#14261f", "#dfe8e2"
 OUT = pathlib.Path(__file__).parent / "assets" / "img"
 
 # ------------------------------------------------------------------ finch
-def feather(length, width, deg):
-    """A round-tipped feather from the origin, rotated deg degrees."""
-    L, w = length, width
-    return (f'<path d="M0 0 C{L*.35:.1f} {-w:.1f} {L*.92:.1f} {-w:.1f} {L:.1f} 0 C{L*.92:.1f} {w:.1f} {L*.35:.1f} {w:.1f} 0 0 Z" '
-            f'transform="rotate({deg:.1f})"/>')
-
-def fan(root, feathers, width, solid=.86):
-    """A wing or tail: round-tipped feathers fanned from a root point.
-    feathers = [(angle in degrees clockwise from pointing right, length), ...]"""
+def fan(root, feathers, n, overlap=1.25, solid=.9):
+    """A wing or tail: round-tipped feathers fanned from a root point, giving a
+    scalloped edge. feathers = [(angle clockwise from pointing right, length), ...]
+    measured from the reference pose; they are interpolated to n feathers."""
+    fs = []
+    for i in range(n):
+        f = i / (n - 1) * (len(feathers) - 1)
+        k = min(int(f), len(feathers) - 2); u = f - k
+        fs.append((feathers[k][0] * (1-u) + feathers[k+1][0] * u, feathers[k][1] * (1-u) + feathers[k+1][1] * u))
+    step = abs(fs[1][0] - fs[0][0])
     out, pts = [], ["0 0"]
-    for ang, length in feathers:
-        out.append(feather(length, width, ang))
-        r = length * solid
+    for ang, L in fs:
+        w = L * math.sin(math.radians(step / 2)) * overlap
+        out.append(f'<path d="M0 {-w*.3:.1f} L{L-w:.1f} {-w:.1f} A{w:.1f} {w:.1f} 0 0 1 {L-w:.1f} {w:.1f} L0 {w*.3:.1f} Z" transform="rotate({ang:.1f})"/>')
+        r = L * solid
         pts.append(f"{r*math.cos(math.radians(ang)):.1f} {r*math.sin(math.radians(ang)):.1f}")
     out.append(f'<path d="M{" L".join(pts)} Z"/>')
     return f'<g transform="translate({root[0]} {root[1]})">' + "".join(out) + "</g>"
 
-def spread(a0, a1, l0, lmid, l1, n):
-    """n feathers from angle a0 to a1, lengths easing l0 -> lmid -> l1."""
-    res = []
-    for i in range(n):
-        f = i / (n - 1)
-        length = (1-f)**2 * l0 + 2*f*(1-f) * lmid + f**2 * l1
-        res.append((a0 + (a1 - a0) * f, length))
-    return res
-
 def finch(eye="#fff"):
-    """Finch flying left: upper wing raised in a broad fan, lower wing swept down
-    and forward, tail fanned behind. Pose modelled on a house finch in flight."""
-    upper = fan((216, 200), spread(-114, -6, 74, 98, 48, 13), 6)
-    lower = fan((210, 228), spread(124, 14, 108, 80, 38, 13), 6)
-    tail  = fan((262, 216), spread(-28, 56, 46, 54, 48, 7), 8, .9)
+    """House finch in flight, heading left and looking slightly down: upper wing
+    raised in a broad fan, lower wing swept down and forward, tail fanned behind."""
+    upper = fan((300, 412), [(-103, 255), (-92, 285), (-82, 295), (-66, 282), (-50, 264), (-30, 254), (-11, 250), (12, 236)], 15)
+    lower = fan((290, 548), [(120, 388), (112, 406), (105, 399), (98, 364), (93, 326), (84, 301), (73, 282), (62, 259), (50, 241), (36, 229), (21, 225), (5, 226)], 17)
+    tail  = fan((540, 512), [(-31, 158), (-8, 180), (10, 191), (26, 203), (39, 228), (54, 236)], 8, 1.15)
     return f"""{upper}
     {lower}
     {tail}
-    <ellipse cx="222" cy="215" rx="50" ry="19.5" transform="rotate(5 222 215)"/>
-    <circle cx="176" cy="209" r="14.5"/>
-    <path d="M161.5 205 L151.5 218 L167.5 221 Z"/>
-    <circle cx="169.5" cy="207" r="2.2" fill="{eye}"/>"""
+    <ellipse cx="388" cy="492" rx="196" ry="80" transform="rotate(8 388 492)"/>
+    <circle cx="196" cy="466" r="57"/>
+    <path d="M150 432 L102 484 L158 506 Z"/>
+    <circle cx="174" cy="450" r="9" fill="{eye}"/>"""
 
-LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="136 104 190 236" role="img" aria-labelledby="t">
+LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 690 920" role="img" aria-labelledby="t">
   <title id="t">Finchby — a finch in flight, wings spread</title>
   <g fill="{INK}">
   {finch()}
@@ -73,7 +66,7 @@ def laurel():
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and a torch, divided by a chevron with three buckles, framed by laurel, with a finch in flight above and the motto Grip Fast</title>
+  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, with a finch in flight above and the motto Grip Fast</title>
   <defs>
     <!-- engraver's hatching: horizontal lines = blue, dots = gold -->
     <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="{INK}" stroke-width=".8"/></pattern>
@@ -90,7 +83,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(106 66) scale(.42)" fill="{INK}">
+  <g transform="translate(152 88) scale(.115)" fill="{INK}">
   {finch()}
   </g>
   <!-- wreath -->
@@ -125,13 +118,12 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role
     <path d="M-21 9 C-15 -8 3 -17 23 -15 C17 -11 13 -9 10 -6 C15 -6 18 -6 20 -5 C14 -2 10 0 7 2 C11 3 13 3 15 4 C9 7 4 9 -1 10 C-8 13 -15 12 -21 9 Z"/>
     <path d="M-14 6 C-8 -4 2 -9 12 -10 M-9 8 C-3 2 4 -2 11 -3" fill="none" stroke-width="1.1"/>
   </g>
-  <!-- 3. integrity: a torch -->
-  <g transform="translate(200 368)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M-5 2 L-2.5 24 H2.5 L5 2 Z"/>
-    <path d="M-3.6 9 H3.6 M-3 15 H3" fill="none" stroke-width="1.1"/>
-    <path d="M-10 -4 H10 L7 3 H-7 Z"/>
-    <path d="M0 -27 C2 -21 9 -17 8 -10 C7.5 -6.5 4.5 -4 0 -4 C-4.5 -4 -7.5 -6.5 -8 -10 C-8.5 -14 -5 -16 -4 -20 C-2 -18 -1 -17 -1 -15 C1 -18 1 -23 0 -27 Z"/>
-    <path d="M0 -13 C2 -11 3 -9 2 -7 C1.5 -5.5 -1.5 -5.5 -2 -7 C-2.5 -9 -1 -11 0 -13 Z" fill="{INK}" stroke="none"/>
+  <!-- 3. integrity: an anchor -->
+  <g transform="translate(200 367)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 -15 V21 M-9 -8 H9 M-17 5 C-15 16 -7 21 0 21 C7 21 15 16 17 5 M-22 10 L-17 2 L-11 8 M22 10 L17 2 L11 8" stroke="{INK}" stroke-width="7"/>
+    <circle cy="-20" r="5" stroke="{INK}" stroke-width="7"/>
+    <path d="M0 -15 V21 M-9 -8 H9 M-17 5 C-15 16 -7 21 0 21 C7 21 15 16 17 5 M-22 10 L-17 2 L-11 8 M22 10 L17 2 L11 8" stroke="#fff" stroke-width="3.4"/>
+    <circle cy="-20" r="5" stroke="#fff" stroke-width="3.4"/>
   </g>
 
   <!-- three buckles on the chevron, after Leslie -->
