@@ -96,6 +96,11 @@ def scroll_ornaments(k=1, edge_drop=20):
         out.append(f'<path d="M{x-4:.1f} {y:.1f} L{x:.1f} {y-3.2:.1f} L{x+4:.1f} {y:.1f} L{x:.1f} {y+3.2:.1f} Z"/>')
     return "".join(out)
 
+# The knot where the laurel stems meet: the two stems join in one line that loops once,
+# crossing itself just under the shield's point.
+KNOT = ("M184.4 439.13 C189.4 439.7 194.6 441.6 198.6 440.6 C203.6 439 207.4 434 203.6 431.4 "
+        "C199.6 428.8 194.6 432.4 197.6 436.8 C199.4 439.4 202.4 441.4 206 441.4 C208.4 441.4 210.6 439.7 215.6 439.13")
+
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 436" role="img" aria-labelledby="ct">
@@ -114,8 +119,8 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 436" role
 
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
-  <!-- a ribbon bow tying the laurel stems, drawn in line -->
-  <path d="M200 440 C194 432 184 431 184 438.5 C184 446 194 446.5 200 440 C206 432 216 431 216 438.5 C216 446 206 446.5 200 440 M200 440 C198 446 194.5 451 190 456 M200 440 C202 446 205.5 451 210 456" fill="none" stroke="{INK}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- the two laurel stems meet in a simple knot -->
+  <path d="{KNOT}" fill="none" stroke="{INK}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- crest: the finch -->
   <g transform="translate(145.7 78.4) scale(.13)" fill="{INK}">

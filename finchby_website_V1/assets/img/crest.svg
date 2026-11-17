@@ -41,8 +41,8 @@
 
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
-  <!-- a ribbon bow tying the laurel stems, drawn in line -->
-  <path d="M200 440 C194 432 184 431 184 438.5 C184 446 194 446.5 200 440 C206 432 216 431 216 438.5 C216 446 206 446.5 200 440 M200 440 C198 446 194.5 451 190 456 M200 440 C202 446 205.5 451 210 456" fill="none" stroke="#14261f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- the two laurel stems meet in a simple knot -->
+  <path d="M184.4 439.13 C189.4 439.7 194.6 441.6 198.6 440.6 C203.6 439 207.4 434 203.6 431.4 C199.6 428.8 194.6 432.4 197.6 436.8 C199.4 439.4 202.4 441.4 206 441.4 C208.4 441.4 210.6 439.7 215.6 439.13" fill="none" stroke="#14261f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- crest: the finch -->
   <g transform="translate(145.7 78.4) scale(.13)" fill="#14261f">
