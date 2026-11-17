@@ -117,7 +117,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 436" role
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(152 92.9) scale(.115)" fill="{INK}">
+  <g transform="translate(145.7 78.4) scale(.13)" fill="{INK}">
   {finch()}
   </g>
   <!-- shield: three fields -->
