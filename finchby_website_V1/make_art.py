@@ -146,7 +146,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 436" role
     <path d="M-14 6 C-8 -4 2 -9 12 -10 M-9 8 C-3 2 4 -2 11 -3" fill="none" stroke-width="1.1"/>
   </g>
   <!-- 3. integrity: an anchor -->
-  <g transform="translate(200 367)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(200 367) scale(1.12)" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M0 -15 V21 M-9 -8 H9 M-17 5 C-15 16 -7 21 0 21 C7 21 15 16 17 5 M-22 10 L-17 2 L-11 8 M22 10 L17 2 L11 8" stroke="{INK}" stroke-width="7"/>
     <circle cy="-20" r="5" stroke="{INK}" stroke-width="7"/>
     <path d="M0 -15 V21 M-9 -8 H9 M-17 5 C-15 16 -7 21 0 21 C7 21 15 16 17 5 M-22 10 L-17 2 L-11 8 M22 10 L17 2 L11 8" stroke="#fff" stroke-width="3.4"/>
