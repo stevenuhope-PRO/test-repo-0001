@@ -66,19 +66,25 @@ def laurel():
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
 def wreath(x0=158, x1=242, y0=194, y1=208, n=6):
-    """The torse: a roll of two colours of silk twisted together, shown side-on
-    as n curved twists alternating white and ink, with rounded ends."""
-    w, r = (x1 - x0) / n, (y1 - y0) / 2
-    edge = lambda x: f"{x+3:.1f} {y0} Q{x+7:.1f} {y0+r:.1f} {x-3:.1f} {y1}"   # one twist boundary, top to bottom
-    roll = f"M{x0+r} {y0} H{x1-r} A{r} {r} 0 0 1 {x1-r} {y1} H{x0+r} A{r} {r} 0 0 1 {x0+r} {y0} Z"
-    parts = [f'<clipPath id="wr"><path d="{roll}"/></clipPath>', f'<path d="{roll}" fill="#fff"/>', '<g clip-path="url(#wr)">']
+    """The torse: a roll of cloth in two colours twisted together, shown side-on
+    as n slanted, slightly puffed twists alternating white and ink, each with a crease."""
+    w, m = (x1 - x0) / n, (y0 + y1) / 2
+    top, bot, k = y0 + .8, y1 - .8, 4.5                  # pinch at the seams; k = slant of each seam
+    seam = lambda x: (x + k, x - k)                      # seam runs from (x+k, top) down to (x-k, bot)
+    parts = []
     for i in range(n):
-        a, b = x0 + i * w, x0 + (i + 1) * w
-        fill = INK if i % 2 else "#fff"
-        if i == 0: a -= 10          # end twists run past the rounded ends, which clip them
-        if i == n - 1: b += 10
-        parts.append(f'<path d="M{edge(a)} L{b-3:.1f} {y1} Q{b+7:.1f} {y0+r:.1f} {b+3:.1f} {y0} Z" fill="{fill}" stroke-width="1.2"/>')
-    parts += ["</g>", f'<path d="{roll}" fill="none"/>']
+        a, b, c = x0 + i * w, x0 + (i + 1) * w, x0 + (i + .5) * w
+        (at, ab), (bt, bb) = seam(a), seam(b)
+        if i == 0: ab, at = a + 1, a + 4                 # rounded ends
+        if i == n - 1: bt, bb = b - 1, b - 4
+        right = f"Q{b+9:.1f} {m:.1f}" if i == n - 1 else f"Q{b+3:.1f} {m:.1f}"
+        left = f"Q{a-9:.1f} {m:.1f}" if i == 0 else f"Q{a+3:.1f} {m:.1f}"
+        d = (f"M{at:.1f} {top} Q{c+2:.1f} {y0-1.4:.1f} {bt:.1f} {top} {right} {bb:.1f} {bot} "
+             f"Q{c-2:.1f} {y1+1.4:.1f} {ab:.1f} {bot} {left} {at:.1f} {top} Z")
+        ink = i % 2
+        parts.append(f'<path d="{d}" fill="{INK if ink else "#fff"}"/>')
+        crease = f"M{c+3:.1f} {y0+2.6:.1f} Q{c+2.5:.1f} {m:.1f} {c-3.5:.1f} {y1-2.4:.1f}"
+        parts.append(f'<path d="{crease}" fill="none" stroke="{"#fff" if ink else INK}" stroke-width=".9" stroke-linecap="round"/>')
     return "\n    ".join(parts)
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role="img" aria-labelledby="ct">
@@ -99,7 +105,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(152 88) scale(.115)" fill="{INK}">
+  <g transform="translate(152 79) scale(.115)" fill="{INK}">
   {finch()}
   </g>
   <!-- wreath -->
