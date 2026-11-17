@@ -1,34 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby arms: a chevron between two roundels and a finch in flight, with the motto Fide et Opera</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" role="img" aria-labelledby="ct">
+  <title id="ct">Finchby arms: on a blue shield a gold chevron charged with three buckles between three gold roundels; above, a helm, wreath and a finch in flight; motto Grip Fast</title>
   <defs>
-    <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse">
-      <path d="M0 0 V4" stroke="#1c1c1a" stroke-width=".7"/>
-    </pattern>
-    <clipPath id="sh"><path d="M40 30 H200 V140 C200 190 165 225 120 245 C75 225 40 190 40 140 Z"/></clipPath>
+    <!-- traditional engraver's hatching: horizontal lines = blue (azure), dots = gold (or) -->
+    <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="#14261f" stroke-width=".8"/></pattern>
+    <pattern id="or" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#fff"/><circle cx="1.5" cy="1.5" r=".7" fill="#14261f"/><circle cx="4.5" cy="4.5" r=".7" fill="#14261f"/></pattern>
+    <clipPath id="sh"><path d="M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"/></clipPath>
+    <g id="mantle" fill="#eef3ef" stroke="#14261f" stroke-width="2" stroke-linejoin="round">
+      <path d="M230 154 C256 124 302 126 326 162 C304 154 286 158 274 171 C302 172 328 194 332 234 C314 212 296 205 282 211 C302 230 314 258 308 296 C304 268 298 240 292 212 L236 212 Z"/>
+      <path d="M240 200 C260 172 290 158 318 160 M250 208 C274 196 304 204 326 226 M286 216 C298 236 304 258 306 284" fill="none" stroke-width="1.2"/>
+      <path d="M326 162 C340 158 350 164 354 176 C346 172 338 172 332 176 M332 234 C344 236 350 246 350 258 C344 250 338 246 330 246 M308 296 C314 304 314 314 308 322 C308 312 304 306 298 302" stroke-width="1.6"/>
+    </g>
+    <g id="buckle" fill="none" stroke="#14261f">
+      <circle r="7" stroke-width="2.4" fill="#fff"/>
+      <path d="M-7 0 H5" stroke-width="2"/>
+    </g>
   </defs>
+
+  <!-- mantling, both sides -->
+  <use href="#mantle"/>
+  <use href="#mantle" transform="translate(400 0) scale(-1 1)"/>
+
+  <!-- crest: finch in flight -->
+  <g transform="translate(152 58) scale(.56)" fill="#14261f">
+    <path d="M48 80 L8 82 L22 90 L10 101 L54 90 Z"/>
+    <path d="M36 83 C58 66 96 56 124 58 C128 48 143 44 151 52 C154 55 155 58 155 61 L170 65 L155 70 C151 81 134 91 112 93 C84 95 58 91 36 83 Z"/>
+    <path d="M122 60 C108 30 72 10 26 16 C52 24 70 42 80 70 C96 70 110 66 122 60 Z" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="145" cy="58" r="2.6" fill="#fff"/>
+  </g>
+
+  <!-- wreath (torse) -->
+  <g stroke="#14261f" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M164 128 H236 V142 H164 Z" fill="#fff"/>
+    <path d="M164 142 L172 128 H184 L176 142 Z M188 142 L196 128 H208 L200 142 Z M212 142 L220 128 H232 L224 142 Z" fill="#14261f"/>
+  </g>
+
+  <!-- helm -->
+  <g stroke="#14261f" stroke-width="2" stroke-linejoin="round" fill="#fff">
+    <path d="M172 212 C166 190 164 168 172 154 C182 138 218 138 228 154 C236 168 234 190 228 212 Z"/>
+    <path d="M174 168 H226 V178 H174 Z" fill="#14261f"/>
+    <path d="M186 178 V204 M200 178 V206 M214 178 V204" stroke-width="1.6"/>
+    <path d="M178 154 C186 146 214 146 222 154" fill="none" stroke-width="1.2"/>
+    <path d="M160 212 H240 L248 224 H152 Z"/>
+  </g>
+
   <!-- shield -->
-  <path d="M40 30 H200 V140 C200 190 165 225 120 245 C75 225 40 190 40 140 Z" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="3"/>
-  <path d="M47 37 H193 V140 C193 185 161 217 120 237 C79 217 47 185 47 140 Z" fill="none" stroke="#1c1c1a" stroke-width=".8"/>
-  <!-- chevron (after Hope) -->
+  <path d="M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z" fill="#fff"/>
   <g clip-path="url(#sh)">
-    <path d="M120 88 L210 158 V186 L120 116 L30 186 V158 Z" fill="url(#hatch)" stroke="#1c1c1a" stroke-width="1.6"/>
+    <rect x="100" y="200" width="200" height="240" fill="url(#az)"/>
+    <path d="M200 258 L300 338 V374 L200 294 L100 374 V338 Z" fill="url(#or)" stroke="#14261f" stroke-width="2"/>
   </g>
-  <!-- roundels in chief (after Hope) -->
-  <circle cx="82" cy="72" r="13" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="2"/>
-  <circle cx="82" cy="72" r="8.5" fill="none" stroke="#1c1c1a" stroke-width=".8"/>
-  <circle cx="158" cy="72" r="13" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="2"/>
-  <circle cx="158" cy="72" r="8.5" fill="none" stroke="#1c1c1a" stroke-width=".8"/>
-  <!-- finch in base -->
-  <g transform="translate(84 160) scale(.36)" fill="#1c1c1a">
-    <path d="M70 70 L20 60 L36 71 L18 82 L72 77 Z"/>
-    <path d="M62 71 C82 58 120 52 146 56 C155 48 171 48 175 58 L188 62 L176 66 C173 76 158 82 140 82 C110 84 85 80 62 71 Z"/>
-    <path d="M118 60 C108 34 84 14 50 6 C62 20 69 31 74 42 C65 38 57 36 48 36 C60 45 74 55 92 64 Z"/>
+  <path d="M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z" fill="none" stroke="#14261f" stroke-width="4" stroke-linejoin="round"/>
+  <!-- three roundels (bezants), after Hope -->
+  <g fill="url(#or)" stroke="#14261f" stroke-width="2">
+    <circle cx="150" cy="243" r="15"/><circle cx="250" cy="243" r="15"/><circle cx="200" cy="366" r="15"/>
   </g>
-  <!-- motto ribbon -->
-  <path d="M28 258 C70 274 170 274 212 258 L212 280 C170 296 70 296 28 280 Z" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="1.6"/>
-  <path d="M28 258 L14 250 L20 266 L12 276 L28 280 Z M212 258 L226 250 L220 266 L228 276 L212 280 Z" fill="#e4e0d6" stroke="#1c1c1a" stroke-width="1.4"/>
-  <path id="mp" d="M36 276 C76 290 164 290 204 276" fill="none"/>
-  <text font-family="'Cormorant Garamond', Garamond, Georgia, serif" font-size="12.5" letter-spacing="2" fill="#1c1c1a" text-anchor="middle">
-    <textPath href="#mp" startOffset="50%">FIDE · ET · OPERA</textPath>
+  <!-- three buckles on the chevron, after Leslie -->
+  <use href="#buckle" x="200" y="278"/>
+  <use href="#buckle" transform="translate(156 314) rotate(-39)"/>
+  <use href="#buckle" transform="translate(244 314) rotate(39)"/>
+
+  <!-- motto scroll -->
+  <g stroke="#14261f" stroke-width="2" stroke-linejoin="round">
+    <path d="M92 462 L64 450 L74 470 L62 486 L92 492 Z M308 462 L336 450 L326 470 L338 486 L308 492 Z" fill="#dfe8e2"/>
+    <path d="M92 462 L104 474 L104 502 L92 492 Z M308 462 L296 474 L296 502 L308 492 Z" fill="#14261f"/>
+    <path d="M104 452 C160 470 240 470 296 452 L296 484 C240 502 160 502 104 484 Z" fill="#fff"/>
+  </g>
+  <path id="mp" d="M112 478 C164 494 236 494 288 478" fill="none"/>
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="17" letter-spacing="5" fill="#14261f" text-anchor="middle">
+    <textPath href="#mp" startOffset="50%">GRIP FAST</textPath>
   </text>
 </svg>
