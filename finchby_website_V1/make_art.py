@@ -26,11 +26,7 @@ def fan(root, feathers, n, overlap=1.25, solid=.9):
     out.append(f'<path d="M{" L".join(pts)} Z"/>')
     return f'<g transform="translate({root[0]} {root[1]})">' + "".join(out) + "</g>"
 
-BEAK = '<path d="M150 432 L102 484 L158 506 Z"/>'
-# The crest's finch: a short, deep, conical beak set below a rounded forehead.
-BEAK_STOUT = '<path d="M143 450 Q122 462 106 489 Q128 499 153 502 Z"/>'
-
-def finch(eye="#fff", stout_beak=False):
+def finch(eye="#fff"):
     """House finch in flight, heading left and looking slightly down: upper wing
     raised in a broad fan, lower wing swept down and forward, tail fanned behind."""
     upper = fan((300, 412), [(-103, 275), (-92, 305), (-82, 315), (-66, 302), (-50, 284), (-30, 272), (-11, 262), (12, 240)], 15)
@@ -41,7 +37,7 @@ def finch(eye="#fff", stout_beak=False):
     {tail}
     <ellipse cx="388" cy="492" rx="196" ry="80" transform="rotate(8 388 492)"/>
     <circle cx="196" cy="466" r="57"/>
-    {BEAK_STOUT if stout_beak else BEAK}
+    <path d="M150 432 L102 484 L158 506 Z"/>
     <circle cx="174" cy="450" r="9" fill="{eye}"/>"""
 
 LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 690 920" role="img" aria-labelledby="t">
@@ -94,7 +90,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 474" role
 
   <!-- crest: the finch -->
   <g transform="translate(152 92.9) scale(.115)" fill="{INK}">
-  {finch(stout_beak=True)}
+  {finch()}
   </g>
   <!-- shield: three fields -->
   <path d="{SHIELD}" fill="#fff"/>
