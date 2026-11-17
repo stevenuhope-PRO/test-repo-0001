@@ -13,37 +13,41 @@ def feather(length, width, deg):
     return (f'<path d="M0 0 C{L*.35:.1f} {-w:.1f} {L*.92:.1f} {-w:.1f} {L:.1f} 0 C{L*.92:.1f} {w:.1f} {L*.35:.1f} {w:.1f} 0 0 Z" '
             f'transform="rotate({deg:.1f})"/>')
 
-def wing(side, scale=1.0, n=11):
-    """Fanned wing. side=-1 upper, +1 lower. Angles are measured from the direction of flight."""
-    a0, a1 = 52, 150
-    out, fan = [], ["0 0"]
+def fan(root, feathers, width, solid=.86):
+    """A wing or tail: round-tipped feathers fanned from a root point.
+    feathers = [(angle in degrees clockwise from pointing right, length), ...]"""
+    out, pts = [], ["0 0"]
+    for ang, length in feathers:
+        out.append(feather(length, width, ang))
+        r = length * solid
+        pts.append(f"{r*math.cos(math.radians(ang)):.1f} {r*math.sin(math.radians(ang)):.1f}")
+    out.append(f'<path d="M{" L".join(pts)} Z"/>')
+    return f'<g transform="translate({root[0]} {root[1]})">' + "".join(out) + "</g>"
+
+def spread(a0, a1, l0, lmid, l1, n):
+    """n feathers from angle a0 to a1, lengths easing l0 -> lmid -> l1."""
+    res = []
     for i in range(n):
         f = i / (n - 1)
-        ang = a0 + (a1 - a0) * f
-        length = (60 + 14 * math.sin(math.pi * min(f * 2.2, 1)) - 26 * f ** 1.6) * scale          # long primaries in front, short secondaries behind
-        out.append(feather(length, 6.2, side * ang))
-        r = length * .8
-        fan.append(f"{r*math.cos(math.radians(ang)):.1f} {side*r*math.sin(math.radians(ang)):.1f}")
-    out.append(f'<path d="M{" L".join(fan)} Z"/>')      # solid inner wing
-    return "\n      ".join(out)
+        length = (1-f)**2 * l0 + 2*f*(1-f) * lmid + f**2 * l1
+        res.append((a0 + (a1 - a0) * f, length))
+    return res
 
 def finch(eye="#fff"):
-    tail = "".join(feather(L, 7, 180 + d) for d, L in [(-24, 36), (-12, 35), (0, 30), (12, 35), (24, 36)])
-    return f"""<g transform="rotate(-24)">
-    <g transform="translate(6 -7)">
-      {wing(-1)}
-    </g>
-    <g transform="translate(6 7)">
-      {wing(1, .9)}
-    </g>
-    <g transform="translate(-22 0)">{tail}</g>
-    <ellipse cx="2" cy="0" rx="31" ry="13.5"/>
-    <circle cx="31" cy="0" r="11.5"/>
-    <path d="M39 -7 L51 0 L39 7 Z"/>
-    <circle cx="34" cy="-4.5" r="1.9" fill="{eye}"/>
-  </g>"""
+    """Finch flying left: upper wing raised in a broad fan, lower wing swept down
+    and forward, tail fanned behind. Pose modelled on a house finch in flight."""
+    upper = fan((216, 200), spread(-114, -6, 74, 98, 48, 13), 6)
+    lower = fan((210, 228), spread(124, 14, 108, 80, 38, 13), 6)
+    tail  = fan((262, 216), spread(-28, 56, 46, 54, 48, 7), 8, .9)
+    return f"""{upper}
+    {lower}
+    {tail}
+    <ellipse cx="222" cy="215" rx="50" ry="19.5" transform="rotate(5 222 215)"/>
+    <circle cx="177" cy="206" r="14.5"/>
+    <path d="M167 196 L152 205 L168 212 Z"/>
+    <circle cx="172" cy="202" r="2.2" fill="{eye}"/>"""
 
-LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="-68 -80 140 140" role="img" aria-labelledby="t">
+LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="136 104 190 236" role="img" aria-labelledby="t">
   <title id="t">Finchby — a finch in flight, wings spread</title>
   <g fill="{INK}">
   {finch()}
@@ -69,7 +73,7 @@ def laurel():
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby crest: a shield in three parts showing an open book, a wing and an arrow in a target, divided by a chevron with three buckles, framed by laurel, with a finch in flight above and the motto Grip Fast</title>
+  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and a pair of scales, divided by a chevron with three buckles, framed by laurel, with a finch in flight above and the motto Grip Fast</title>
   <defs>
     <!-- engraver's hatching: horizontal lines = blue, dots = gold -->
     <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="{INK}" stroke-width=".8"/></pattern>
@@ -86,7 +90,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(198 158) scale(.8)" fill="{INK}">
+  <g transform="translate(106 66) scale(.42)" fill="{INK}">
   {finch()}
   </g>
   <!-- wreath -->
@@ -105,21 +109,26 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role
   </g>
   <path d="{SHIELD}" fill="none" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>
 
-  <!-- 1. intelligent: an open book -->
-  <g transform="translate(153 246)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round">
-    <path d="M0 -9 C-7 -15 -15 -15 -22 -11 V13 C-15 9 -7 9 0 14 C7 9 15 9 22 13 V-11 C15 -15 7 -15 0 -9 Z"/>
-    <path d="M0 -9 V14 M-17 -6 C-12 -8 -8 -8 -4 -5 M-17 0 C-12 -2 -8 -2 -4 1 M-17 6 C-12 4 -8 4 -4 7 M17 -6 C12 -8 8 -8 4 -5 M17 0 C12 -2 8 -2 4 1 M17 6 C12 4 8 4 4 7" fill="none" stroke-width="1.2"/>
+  <!-- 1. wisdom: an owl -->
+  <g transform="translate(153 245)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M-15 -17 L-8 -12 C-3 -14 3 -14 8 -12 L15 -17 C17 -8 17 2 14 10 C11 17 5 20 0 20 C-5 20 -11 17 -14 10 C-17 2 -17 -8 -15 -17 Z"/>
+    <circle cx="-6.5" cy="-3" r="5.6"/><circle cx="6.5" cy="-3" r="5.6"/>
+    <circle cx="-6.5" cy="-3" r="2.1" fill="{INK}" stroke="none"/><circle cx="6.5" cy="-3" r="2.1" fill="{INK}" stroke="none"/>
+    <path d="M-2.2 2 L0 6.5 L2.2 2 Z" fill="{INK}" stroke-width="1"/>
+    <path d="M-6 11 Q-3 14 0 11 Q3 14 6 11" fill="none" stroke-width="1.2"/>
   </g>
-  <!-- 2. agile: a wing -->
+  <!-- 2. agility: a wing -->
   <g transform="translate(247 246) scale(1.05)" fill="#fff" stroke="{INK}" stroke-width="1.7" stroke-linejoin="round">
     <path d="M-21 9 C-15 -8 3 -17 23 -15 C17 -11 13 -9 10 -6 C15 -6 18 -6 20 -5 C14 -2 10 0 7 2 C11 3 13 3 15 4 C9 7 4 9 -1 10 C-8 13 -15 12 -21 9 Z"/>
     <path d="M-14 6 C-8 -4 2 -9 12 -10 M-9 8 C-3 2 4 -2 11 -3" fill="none" stroke-width="1.1"/>
   </g>
-  <!-- 3. focused: an arrow in the target (the roundel of Hope) -->
-  <g transform="translate(200 368)" stroke="{INK}">
-    <circle r="17" fill="#fff" stroke-width="2"/><circle r="11" fill="none" stroke-width="1.6"/><circle r="5" fill="{INK}"/>
-    <path d="M0 0 L24 -24" stroke-width="2.6" stroke-linecap="round"/>
-    <path d="M17 -24 L24 -24 L24 -17 M21 -28 L28 -28 L28 -21" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 3. integrity: the scales -->
+  <g transform="translate(200 366)" fill="#fff" stroke="{INK}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-10 21 H10 L6 16 H-6 Z"/>
+    <path d="M0 16 V-20 M-22 -14 H22" fill="none" stroke-width="2.4"/>
+    <circle cx="0" cy="-21" r="3"/>
+    <path d="M-22 -14 L-30 4 M-22 -14 L-14 4 M22 -14 L14 4 M22 -14 L30 4" fill="none" stroke-width="1.2"/>
+    <path d="M-32 4 H-12 C-13 11 -17 14 -22 14 C-27 14 -31 11 -32 4 Z M12 4 H32 C31 11 27 14 22 14 C17 14 13 11 12 4 Z"/>
   </g>
 
   <!-- three buckles on the chevron, after Leslie -->
