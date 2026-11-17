@@ -41,8 +41,8 @@
 
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
-  <!-- the two laurel stems meet in a simple knot -->
-  <path d="M184.4 439.13 C189.4 439.7 195.4 441.6 200 440.4 M200 440.4 C204.2 437.6 206 431.2 200 430.6 M200 440.4 C195.8 437.6 194 431.2 200 430.6 M215.6 439.13 C210.6 439.7 204.6 441.6 200 440.4 M200 440.4 C197.6 442.2 195.4 443.8 193.4 445.8 M200 440.4 C202.4 442.2 204.6 443.8 206.6 445.8" fill="none" stroke="#14261f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- the two laurel stems cross -->
+  <path d="M184.4 439.13 C189.4 439.7 195 440.6 200 441.6 C203.6 442.4 206.6 444 209.4 446.2 M215.6 439.13 C210.6 439.7 205 440.6 200 441.6 C196.4 442.4 193.4 444 190.6 446.2" fill="none" stroke="#14261f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- crest: the finch -->
   <g transform="translate(145.7 78.4) scale(.13)" fill="#14261f">
