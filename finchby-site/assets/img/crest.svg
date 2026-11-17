@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" role="img" aria-labelledby="ct">
+  <title id="ct">Finchby arms: a chevron between two roundels and a finch in flight, with the motto Fide et Opera</title>
+  <defs>
+    <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 0 V4" stroke="#1c1c1a" stroke-width=".7"/>
+    </pattern>
+    <clipPath id="sh"><path d="M40 30 H200 V140 C200 190 165 225 120 245 C75 225 40 190 40 140 Z"/></clipPath>
+  </defs>
+  <!-- shield -->
+  <path d="M40 30 H200 V140 C200 190 165 225 120 245 C75 225 40 190 40 140 Z" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="3"/>
+  <path d="M47 37 H193 V140 C193 185 161 217 120 237 C79 217 47 185 47 140 Z" fill="none" stroke="#1c1c1a" stroke-width=".8"/>
+  <!-- chevron (after Hope) -->
+  <g clip-path="url(#sh)">
+    <path d="M120 88 L210 158 V186 L120 116 L30 186 V158 Z" fill="url(#hatch)" stroke="#1c1c1a" stroke-width="1.6"/>
+  </g>
+  <!-- roundels in chief (after Hope) -->
+  <circle cx="82" cy="72" r="13" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="2"/>
+  <circle cx="82" cy="72" r="8.5" fill="none" stroke="#1c1c1a" stroke-width=".8"/>
+  <circle cx="158" cy="72" r="13" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="2"/>
+  <circle cx="158" cy="72" r="8.5" fill="none" stroke="#1c1c1a" stroke-width=".8"/>
+  <!-- finch in base -->
+  <g transform="translate(84 160) scale(.36)" fill="#1c1c1a">
+    <path d="M70 70 L20 60 L36 71 L18 82 L72 77 Z"/>
+    <path d="M62 71 C82 58 120 52 146 56 C155 48 171 48 175 58 L188 62 L176 66 C173 76 158 82 140 82 C110 84 85 80 62 71 Z"/>
+    <path d="M118 60 C108 34 84 14 50 6 C62 20 69 31 74 42 C65 38 57 36 48 36 C60 45 74 55 92 64 Z"/>
+  </g>
+  <!-- motto ribbon -->
+  <path d="M28 258 C70 274 170 274 212 258 L212 280 C170 296 70 296 28 280 Z" fill="#fbfaf6" stroke="#1c1c1a" stroke-width="1.6"/>
+  <path d="M28 258 L14 250 L20 266 L12 276 L28 280 Z M212 258 L226 250 L220 266 L228 276 L212 280 Z" fill="#e4e0d6" stroke="#1c1c1a" stroke-width="1.4"/>
+  <path id="mp" d="M36 276 C76 290 164 290 204 276" fill="none"/>
+  <text font-family="'Cormorant Garamond', Garamond, Georgia, serif" font-size="12.5" letter-spacing="2" fill="#1c1c1a" text-anchor="middle">
+    <textPath href="#mp" startOffset="50%">FIDE · ET · OPERA</textPath>
+  </text>
+</svg>

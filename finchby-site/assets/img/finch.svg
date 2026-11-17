@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" role="img" aria-labelledby="t">
+  <title id="t">Finchby — a finch in flight</title>
+  <g fill="#1c1c1a">
+    <!-- tail, notched -->
+    <path d="M70 70 L20 60 L36 71 L18 82 L72 77 Z"/>
+    <!-- body, head and short conical beak -->
+    <path d="M62 71 C82 58 120 52 146 56 C155 48 171 48 175 58 L188 62 L176 66 C173 76 158 82 140 82 C110 84 85 80 62 71 Z"/>
+    <!-- raised wing, swept back -->
+    <path d="M118 60 C108 34 84 14 50 6 C62 20 69 31 74 42 C65 38 57 36 48 36 C60 45 74 55 92 64 Z"/>
+  </g>
+  <circle cx="165" cy="58" r="2.2" fill="#fff"/>
+</svg>
