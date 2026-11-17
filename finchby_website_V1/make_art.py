@@ -49,13 +49,38 @@ LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 690 920" role=
 """
 
 # ------------------------------------------------------------------ crest
+def _bez(p0, p1, p2, p3, n=12):
+    return [tuple((1-t)**3*a + 3*(1-t)**2*t*b + 3*(1-t)*t*t*c + t**3*d for a, b, c, d in zip(p0, p1, p2, p3))
+            for t in (i / n for i in range(n + 1))]
+
+def stem(pt, w0=3.1, w1=1.3):
+    """The laurel's stem as a filled shape that tapers from w0 at its cut end, which runs
+    on past the other stem beneath the shield so the two cross, to w1 at its tip."""
+    end = _bez((209.4, 446.2), (206.6, 444), (203.6, 442.4), (200, 441.6)) + \
+          _bez((200, 441.6), (195, 440.6), (189.4, 439.7), pt(96.4))[1:]
+    arc = [pt(96.4 + (225.2 - 96.4) * i / 80) for i in range(1, 81)]
+    line = end + arc
+    L = [0]
+    for (xa, ya), (xb, yb) in zip(line, line[1:]):
+        L.append(L[-1] + math.hypot(xb - xa, yb - ya))
+    left, right = [], []
+    for i, (x, y) in enumerate(line):
+        (xa, ya), (xb, yb) = line[max(i-1, 0)], line[min(i+1, len(line)-1)]
+        d = math.hypot(xb - xa, yb - ya); nx, ny = -(yb - ya) / d, (xb - xa) / d
+        w = (w0 + (w1 - w0) * (L[i] / L[-1]) ** .7) / 2
+        left.append(f"{x + nx*w:.2f} {y + ny*w:.2f}"); right.append(f"{x - nx*w:.2f} {y - ny*w:.2f}")
+    (xe, ye), (xt, yt) = line[0], line[-1]
+    return (f'<path d="M{" L".join(left)} L{" L".join(reversed(right))} Z" fill="{INK}" stroke="none"/>'
+            f'<circle cx="{xe:.2f}" cy="{ye:.2f}" r="{w0/2}" fill="{INK}" stroke="none"/>'
+            f'<circle cx="{xt:.2f}" cy="{yt:.2f}" r="{w1/2}" fill="{INK}" stroke="none"/>')
+
 def laurel():
     cx, cy, r = 200, 300, 140
     pt = lambda th: (cx + r * math.cos(math.radians(th)), cy + r * math.sin(math.radians(th)))
     leaf = "M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z"
     angs = [104 + i * 9.6 for i in range(13)]
-    (x0, y0), (x1, y1) = pt(96.4), pt(angs[-1] + 6)    # the stem runs into the bow
-    parts = [f'<path d="M{x0:.1f} {y0:.1f} A{r} {r} 0 0 1 {x1:.1f} {y1:.1f}" fill="none" stroke-width="2"/>']
+    x1, y1 = pt(angs[-1] + 6)
+    parts = [stem(pt)]
     for i, th in enumerate(angs):
         x, y = pt(th)
         for off in (-34, 34):
@@ -96,10 +121,6 @@ def scroll_ornaments(k=1, edge_drop=20):
         out.append(f'<path d="M{x-4:.1f} {y:.1f} L{x:.1f} {y-3.2:.1f} L{x+4:.1f} {y:.1f} L{x:.1f} {y+3.2:.1f} Z"/>')
     return "".join(out)
 
-# Where the laurel stems meet: each stem runs on past the other under the shield's point,
-# so the two cross, then turns gently down to end. Symmetric left to right.
-KNOT = "M184.4 439.13 C189.4 439.7 195 440.6 200 441.6 C203.6 442.4 206.6 444 209.4 446.2 M215.6 439.13 C210.6 439.7 205 440.6 200 441.6 C196.4 442.4 193.4 444 190.6 446.2"
-
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 436" role="img" aria-labelledby="ct">
@@ -118,8 +139,6 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 436" role
 
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
-  <!-- the two laurel stems cross -->
-  <path d="{KNOT}" fill="none" stroke="{INK}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- crest: the finch -->
   <g transform="translate(145.7 78.4) scale(.13)" fill="{INK}">
