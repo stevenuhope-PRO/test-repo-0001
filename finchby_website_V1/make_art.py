@@ -82,12 +82,16 @@ CROWN = f"""<path d="M-17 -7 C-18 -19 -10 -24 0 -24 C10 -24 18 -19 17 -7 Z" fill
     <circle cy="-24.5" r="3.4" fill="url(#or)"/>
     <path d="M0 -28 V-35 M-2.8 -31.6 H2.8" fill="none" stroke-width="2.2"/>"""
 
-# Royal helm: gold, facing the viewer, with a barred face guard.
-HELM = f"""<path d="M-17 -12 C-21 -24 -20 -40 -12 -47 C-6 -52 6 -52 12 -47 C20 -40 21 -24 17 -12 L22 -3 C23 0 21 2 18 2 H-18 C-21 2 -23 0 -22 -3 Z" fill="url(#or)"/>
-    <path d="M-13.5 -38 C-7 -42.5 7 -42.5 13.5 -38 L12.5 -19 C7 -13.5 -7 -13.5 -12.5 -19 Z" fill="{INK}" stroke-width="1.2"/>
-    <path d="M-9 -39.6 V-15.6 M-4.5 -40.8 V-14.4 M0 -41.2 V-14 M4.5 -40.8 V-14.4 M9 -39.6 V-15.6 M-13 -28 H13" stroke="#fff" stroke-width="1.4" fill="none"/>
-    <path d="M0 -51 V-42.5 M-17 -12 C-8 -10 8 -10 17 -12 M-20 -6 H20" fill="none" stroke-width="1.1"/>
-    <circle cx="-16.5" cy="-28" r="1.5" fill="#fff"/><circle cx="16.5" cy="-28" r="1.5" fill="#fff"/>"""
+# Royal helm, after the royal arms carved in Scotland: a tilting helm in profile facing
+# left, the same way as the finch, edged in gold, with a sight slit above a projecting
+# face plate. Base at y=0.
+_HO = "M18 0 C18 -12 20 -27 17 -37 C14 -46 5 -50 -4 -50 C-11 -50 -15.5 -45 -16 -36 L-16.4 -32.4 L-26 -28 C-25 -19 -21 -12 -15 -7 C-12 -4.5 -12 -2 -14 0 Z"
+_HP = "M5 -29 C6 -20 3 -11 -7 -3"
+HELM = f"""<path d="{_HO}" fill="#fff" stroke-width="5.6"/>
+    <path d="{_HO}" fill="none" stroke="url(#or)" stroke-width="3"/>
+    <path d="{_HP}" fill="none" stroke-width="4.4"/><path d="{_HP}" fill="none" stroke="url(#or)" stroke-width="2"/>
+    <path d="M-16.4 -32.8 L6.5 -32.8 C6.9 -31.4 6.9 -30.2 6.5 -29.4 L-24.6 -28.4 Z" fill="{INK}" stroke-width="1"/>
+    <path d="M-13 -38 C-4 -40 7 -39.4 15 -36" fill="none" stroke-width="1"/>"""
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role="img" aria-labelledby="ct">
   <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, beneath a crowned royal helm with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
@@ -108,7 +112,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(158.4 29.6) scale(.1)" fill="{INK}">
+  <g transform="translate(158.4 22.6) scale(.1)" fill="{INK}">
   {finch()}
   </g>
   <!-- shield: three fields -->
@@ -131,11 +135,11 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role
   </g>
   <path d="{SHIELD}" fill="none" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>
 
-  <!-- helm: a royal helm, gold, facing the viewer, with a barred face guard -->
-  <g transform="translate(200 212) scale(1.35 1.15)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+  <!-- helm: a royal helm in profile facing left, edged in gold, crowned -->
+  <g transform="translate(201 212) scale(1.35 1.2)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
     {HELM}
   </g>
-  <g transform="translate(200 160) scale(1.2)" fill="#fff" stroke="{INK}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+  <g transform="translate(198 154) scale(1.15)" fill="#fff" stroke="{INK}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
     {CROWN}
   </g>
 
