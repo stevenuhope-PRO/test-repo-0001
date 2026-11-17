@@ -7,7 +7,7 @@
     <pattern id="gu" width="3" height="3" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="#fff"/><path d="M1.5 0 V3" stroke="#14261f" stroke-width=".7"/></pattern>
     <clipPath id="sh"><path d="M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"/></clipPath>
     <g id="laurel" fill="#dfe8e2" stroke="#14261f" stroke-width="1.3" stroke-linejoin="round">
-      <path d="M180.5 438.6 A140 140 0 0 1 101.4 200.7" fill="none" stroke-width="2"/>
+      <path d="M184.4 439.1 A140 140 0 0 1 101.4 200.7" fill="none" stroke-width="2"/>
       <path d="M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z" transform="translate(166.1 435.8) rotate(160.0) scale(1.15)"/>
       <path d="M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z" transform="translate(166.1 435.8) rotate(228.0) scale(1.15)"/>
       <path d="M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z" transform="translate(144.0 428.3) rotate(169.6) scale(1.12)"/>
@@ -41,7 +41,8 @@
 
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
-  <path d="M188 436 L212 444 M212 436 L188 444" stroke="#14261f" stroke-width="3" stroke-linecap="round"/>
+  <!-- a ribbon bow tying the laurel stems, drawn in line -->
+  <path d="M200 440 C194 432 184 431 184 438.5 C184 446 194 446.5 200 440 C206 432 216 431 216 438.5 C216 446 206 446.5 200 440 M200 440 C198 446 194.5 451 190 456 M200 440 C202 446 205.5 451 210 456" fill="none" stroke="#14261f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- crest: the finch -->
   <g transform="translate(145.7 78.4) scale(.13)" fill="#14261f">

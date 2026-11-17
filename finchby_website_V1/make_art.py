@@ -54,7 +54,7 @@ def laurel():
     pt = lambda th: (cx + r * math.cos(math.radians(th)), cy + r * math.sin(math.radians(th)))
     leaf = "M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z"
     angs = [104 + i * 9.6 for i in range(13)]
-    (x0, y0), (x1, y1) = pt(98), pt(angs[-1] + 6)
+    (x0, y0), (x1, y1) = pt(96.4), pt(angs[-1] + 6)    # the stem runs into the bow
     parts = [f'<path d="M{x0:.1f} {y0:.1f} A{r} {r} 0 0 1 {x1:.1f} {y1:.1f}" fill="none" stroke-width="2"/>']
     for i, th in enumerate(angs):
         x, y = pt(th)
@@ -114,7 +114,8 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 436" role
 
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
-  <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
+  <!-- a ribbon bow tying the laurel stems, drawn in line -->
+  <path d="M200 440 C194 432 184 431 184 438.5 C184 446 194 446.5 200 440 C206 432 216 431 216 438.5 C216 446 206 446.5 200 440 M200 440 C198 446 194.5 451 190 456 M200 440 C202 446 205.5 451 210 456" fill="none" stroke="{INK}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- crest: the finch -->
   <g transform="translate(145.7 78.4) scale(.13)" fill="{INK}">
