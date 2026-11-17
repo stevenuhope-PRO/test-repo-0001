@@ -53,7 +53,7 @@ def laurel():
     cx, cy, r = 200, 300, 138
     pt = lambda th: (cx + r * math.cos(math.radians(th)), cy + r * math.sin(math.radians(th)))
     leaf = "M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z"
-    angs = [104 + i * 9.6 for i in range(13)]
+    angs = [104 + i * 9.6 for i in range(9)]
     (x0, y0), (x1, y1) = pt(98), pt(angs[-1] + 6)
     parts = [f'<path d="M{x0:.1f} {y0:.1f} A{r} {r} 0 0 1 {x1:.1f} {y1:.1f}" fill="none" stroke-width="2"/>']
     for i, th in enumerate(angs):
@@ -70,45 +70,52 @@ NAME = "M10.80 -24.12L18.92 -24.12L18.40 -17.12L16.24 -17.12L15.80 -21.52L10.68 
 
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
-def wreath(x0=154, x1=246, base=208.5, thick=17, n=7):
-    """The torse: a roll of cloth in two colours twisted together, resting on the
-    shield. It is thickest in the middle and narrows towards the ends, as it would
-    curling round out of sight; each twist is slanted and puffed, white twists shaded
-    with a few engraved lines and ink twists given a highlight along the fold."""
-    cx, hw = (x0 + x1) / 2, (x1 - x0) / 2
-    T = lambda x: thick * (1 - .42 * ((x - cx) / hw) ** 2)          # thickness along the roll
-    pt = lambda x, v: (x, base - T(x) * (1 - v) / 2)                 # v = -1 top edge, +1 bottom edge
-    w = (x1 - x0) / n
-    def seam(x, v):                                                  # seams slant and bow like a twisted cord
-        k = .3 * T(x)
-        return pt(x - k * v + .18 * T(x) * (1 - v * v), v)
-    f = lambda q: f"{q[0]:.1f} {q[1]:.1f}"
-    parts = []
+def scroll(p0, c1, c2, p1, w0, r0, sweep=290, curl=1, bumps=4, outer=1, n=140):
+    """One lobe of mantling: a ribbon that runs along a curve, tapers, and ends in a
+    curl, its outer edge cut into pointed lobes like an acanthus leaf. curl picks the
+    side the end turns to, outer the side that is lobed. Returns the ribbon and a midrib."""
+    pts = []
     for i in range(n):
-        a, b = x0 + i * w, x0 + (i + 1) * w
-        c = (a + b) / 2
-        vs = [-1 + 2 * j / 6 for j in range(7)]
-        if i == 0:   left = [pt(a + 2 - 4 * math.cos(math.asin(v * .97)), v) for v in vs]          # rounded end
-        else:        left = [seam(a, v) for v in vs]
-        if i == n - 1: right = [pt(b - 2 + 4 * math.cos(math.asin(v * .97)), v) for v in vs]
-        else:          right = [seam(b, v) for v in vs]
-        tl, tr, br, bl = left[0], right[0], right[-1], left[-1]
-        topc = pt(c + .2 * T(c), -1.25); botc = pt(c - .2 * T(c), 1.12)                    # puff above and below
-        d = (f"M{f(tl)} Q{f(topc)} {f(tr)} L" + " L".join(f(q) for q in right[1:]) +
-             f" Q{f(botc)} {f(bl)} L" + " L".join(f(q) for q in reversed(left[:-1])) + " Z")
-        ink = i % 2
-        parts.append(f'<path d="{d}" fill="{INK if ink else "#fff"}"/>')
-        if ink:   # highlight along the fold of a dark twist
-            hl = [seam(c - .12 * w, v) for v in (-.7, -.15, .4)]
-            parts.append(f'<path d="M{f(hl[0])} Q{f(hl[1])} {f(hl[2])}" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/>')
-        else:     # engraved shading on the lower, shadowed side of a light twist
-            for off, v0 in ((.3, -.55), (.4, -.75)):
-                sh = [seam(c + off * w, v) for v in (v0, .1, .8)]
-                parts.append(f'<path d="M{f(sh[0])} Q{f(sh[1])} {f(sh[2])}" fill="none" stroke="{INK}" stroke-width=".7" stroke-linecap="round"/>')
-    return "\n    ".join(parts)
+        t = i / n
+        pts.append(tuple((1-t)**3*a + 3*(1-t)**2*t*b + 3*(1-t)*t*t*c + t**3*d for a, b, c, d in zip(p0, c1, c2, p1)))
+    dx, dy = p1[0] - c2[0], p1[1] - c2[1]; L = math.hypot(dx, dy); dx, dy = dx/L, dy/L
+    nx, ny = -dy * curl, dx * curl
+    cx, cy = p1[0] + r0*nx, p1[1] + r0*ny
+    th0 = math.atan2(p1[1] - cy, p1[0] - cx)
+    sgn = 1 if (-math.sin(th0)*dx + math.cos(th0)*dy) > 0 else -1
+    m = 60
+    for i in range(m + 1):
+        u = i / m; th = th0 + sgn * math.radians(sweep) * u; r = r0 * (1 - .55*u)
+        pts.append((cx + r*math.cos(th), cy + r*math.sin(th)))
+    N = len(pts); left, right = [], []
+    for i, (x, y) in enumerate(pts):
+        (xa, ya), (xb, yb) = pts[max(i-1, 0)], pts[min(i+1, N-1)]
+        tx, ty = xb - xa, yb - ya; L = math.hypot(tx, ty) or 1; ox, oy = -ty/L, tx/L
+        u = i / (N - 1); w = w0 * (1 - u)**.7 + .6
+        fr = (bumps * u / .75) % 1
+        bump = .5 + (.42 * math.sin(math.pi * fr**1.5) if u < .75 else 0)   # each lobe swells to a soft point, then cuts back
+        a, b = (bump, .5) if outer > 0 else (.5, bump)
+        left.append(f"{x + ox*w*a:.1f} {y + oy*w*a:.1f}"); right.append(f"{x - ox*w*b:.1f} {y - oy*w*b:.1f}")
+    rib = " L".join(f"{x:.1f} {y:.1f}" for x, y in pts[2:int(N*.86)])
+    return (f'<path d="M{" L".join(left)} L{" L".join(reversed(right))} Z"/>'
+            f'<path d="M{rib}" fill="none" stroke-width=".9"/>')
 
-CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 474" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, with a finch in flight above, the motto Grip Fast and the name Finchby</title>
+def mantling():
+    """Mantling: the cloth that hangs from the helm, drawn as curling leaf-like scrolls."""
+    return "\n      ".join([
+        scroll((194, 160), (166, 136), (120, 134), (100, 168), 22, 11, 300, -1, 4, 1),
+        scroll((186, 180), (146, 172), (100, 190), (84, 236), 19, 12, 300, -1, 4, 1),
+        scroll((180, 202), (140, 210), (106, 240), (98, 292), 15, 9, 290, -1, 3, 1),
+    ])
+
+HELM = """<path d="M15 -12 C21 -24 21 -40 12 -48 C5 -54 -7 -54 -14 -47 C-18 -43 -20 -37 -20 -31 L-25 -27 C-26 -22 -24 -17 -19 -14 L-13 -11 C-17 -7 -21 -3 -22 1 H22 C21 -3 19 -8 15 -12 Z"/>
+    <path d="M-23.5 -28.6 L-4 -30.2 L-4 -27.6 L-22.5 -26.4 Z" fill="{INK}" stroke-width="1"/>
+    <path d="M-2 -53 C-10 -47 -14 -40 -15 -32 M7 -27 C5 -20 0 -15 -7 -12.6 M-18 -7 H18 M-20.5 -3 H20.5" fill="none" stroke-width="1.1"/>
+    <path d="M-19 -21 h3 M-14 -20.2 h3 M-9 -19.6 h3" fill="none" stroke-width="1.3"/>
+    <circle cx="7" cy="-27" r="2"/>"""
+
+CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role="img" aria-labelledby="ct">
+  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel and mantling, beneath a helm with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
   <defs>
     <!-- engraver's hatching: horizontal lines = blue, dots = gold -->
     <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="{INK}" stroke-width=".8"/></pattern>
@@ -120,19 +127,20 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 474" role
     <g id="buckle" fill="none" stroke="{INK}"><circle r="7" stroke-width="2.4" fill="#fff"/><path d="M-7 0 H5" stroke-width="2"/></g>
   </defs>
 
+  <!-- mantling, flowing from the helm on both sides -->
+  <g id="mantle" fill="{TINT}" stroke="{INK}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+      {mantling()}
+  </g>
+  <use href="#mantle" transform="translate(400 0) scale(-1 1)"/>
+
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(158.4 91.6) scale(.1)" fill="{INK}">
+  <g transform="translate(158.4 49.6) scale(.1)" fill="{INK}">
   {finch()}
   </g>
-  <!-- wreath -->
-  <g stroke="{INK}" stroke-width="1.6" stroke-linejoin="round">
-    {wreath()}
-  </g>
-
   <!-- shield: three fields -->
   <path d="{SHIELD}" fill="#fff"/>
   <g clip-path="url(#sh)">
@@ -152,6 +160,11 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 474" role
     <path d="M-4 20 V22.6 M-1.5 20.6 V22.3 M1.5 20.6 V22 M4 20 V21.6" fill="none" stroke-width="1.1"/>
   </g>
   <path d="{SHIELD}" fill="none" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- helm: steel, in profile, visor closed, facing the same way as the finch -->
+  <g transform="translate(200 212) scale(1.25)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+    {HELM}
+  </g>
 
   <!-- 2. agility: a wing -->
   <g transform="translate(247 246) scale(1.05)" fill="#fff" stroke="{INK}" stroke-width="1.7" stroke-linejoin="round">
