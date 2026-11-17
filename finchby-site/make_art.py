@@ -43,9 +43,9 @@ def finch(eye="#fff"):
     {lower}
     {tail}
     <ellipse cx="222" cy="215" rx="50" ry="19.5" transform="rotate(5 222 215)"/>
-    <circle cx="177" cy="206" r="14.5"/>
-    <path d="M167 196 L152 205 L168 212 Z"/>
-    <circle cx="172" cy="202" r="2.2" fill="{eye}"/>"""
+    <circle cx="176" cy="209" r="14.5"/>
+    <path d="M161.5 205 L151.5 218 L167.5 221 Z"/>
+    <circle cx="169.5" cy="207" r="2.2" fill="{eye}"/>"""
 
 LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="136 104 190 236" role="img" aria-labelledby="t">
   <title id="t">Finchby — a finch in flight, wings spread</title>
@@ -109,13 +109,16 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role
   </g>
   <path d="{SHIELD}" fill="none" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>
 
-  <!-- 1. wisdom: an owl -->
-  <g transform="translate(153 245)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M-15 -17 L-8 -12 C-3 -14 3 -14 8 -12 L15 -17 C17 -8 17 2 14 10 C11 17 5 20 0 20 C-5 20 -11 17 -14 10 C-17 2 -17 -8 -15 -17 Z"/>
-    <circle cx="-6.5" cy="-3" r="5.6"/><circle cx="6.5" cy="-3" r="5.6"/>
-    <circle cx="-6.5" cy="-3" r="2.1" fill="{INK}" stroke="none"/><circle cx="6.5" cy="-3" r="2.1" fill="{INK}" stroke="none"/>
-    <path d="M-2.2 2 L0 6.5 L2.2 2 Z" fill="{INK}" stroke-width="1"/>
-    <path d="M-6 11 Q-3 14 0 11 Q3 14 6 11" fill="none" stroke-width="1.2"/>
+  <!-- 1. wisdom: an owl, perched -->
+  <g transform="translate(153 242) scale(.95)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M-4 20 H4 V27 H-4 Z"/>
+    <path d="M0 -22 C9 -22 13 -15 13 -7 C13 -1 12 3 13 9 C14 16 8 21 0 21 C-8 21 -14 16 -13 9 C-12 3 -13 -1 -13 -7 C-13 -15 -9 -22 0 -22 Z"/>
+    <path d="M0 -15 C-3 -18 -9 -17 -10 -12 C-11 -7 -6 -3 0 -3 C6 -3 11 -7 10 -12 C9 -17 3 -18 0 -15 Z" stroke-width="1.2"/>
+    <circle cx="-4.8" cy="-11" r="2" fill="{INK}" stroke="none"/><circle cx="4.8" cy="-11" r="2" fill="{INK}" stroke="none"/>
+    <path d="M-1.6 -8 L0 -4.5 L1.6 -8 Z" fill="{INK}" stroke-width=".8"/>
+    <path d="M-12.5 -2 C-10 6 -8 12 -5 18 M12.5 -2 C10 6 8 12 5 18 M-3 3 L0 5.5 L3 3 M-3 9 L0 11.5 L3 9" fill="none" stroke-width="1.2"/>
+    <path d="M-19 21 H19" fill="none" stroke-width="2.6"/>
+    <path d="M-6 19 V23 M-3 19 V23 M3 19 V23 M6 19 V23" fill="none" stroke-width="1.3"/>
   </g>
   <!-- 2. agility: a wing -->
   <g transform="translate(247 246) scale(1.05)" fill="#fff" stroke="{INK}" stroke-width="1.7" stroke-linejoin="round">
