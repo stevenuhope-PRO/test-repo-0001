@@ -3,7 +3,7 @@
 Sources: (1) the standard suite sold by AI-visibility / GEO / local-SEO agencies in 2026, and
 (2) what Finchby is actually doing in the Victory Countertops action plan (v2, Oct 31 2026).
 The site shows each service as **Available now** or **Coming soon**; flip a status in
-`finchby-site/build.py` (`NOW` / `SOON`) and re-run `python3 build.py`.
+`finchby_website_V1/build.py` (`NOW` / `SOON`) and re-run `python3 build.py`.
 
 ## 1. What the industry normally sells
 

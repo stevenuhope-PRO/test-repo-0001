@@ -1,14 +1,14 @@
 # Finchby — building the prototype in WordPress, Elementor and Yoast SEO
 
-The prototype in `finchby-site/` is plain HTML and CSS. Every section is a simple row of columns,
+The prototype in `finchby_website_V1/` is plain HTML and CSS. Every section is a simple row of columns,
 so each maps directly to an Elementor container. No JavaScript is used, and all text is in plain HTML
 (the same standing rule as in the Victory plan).
 
 ## 0. Two ways to go live
 
-- **Quick (today):** publish `finchby-site/` as it is on Cloudflare Pages (Cloudflare dashboard →
+- **Quick (today):** publish `finchby_website_V1/` as it is on Cloudflare Pages (Cloudflare dashboard →
   Workers & Pages → Create → Pages → upload the folder or connect this repository, build output
-  directory `finchby-site`), then add `finchby.ai` as the custom domain. Free, and the domain is
+  directory `finchby_website_V1`), then add `finchby.ai` as the custom domain. Free, and the domain is
   already at Cloudflare.
 - **WordPress (the plan):** Cloudflare does not host WordPress. Buy WordPress hosting, install
   WordPress, and point the Cloudflare DNS records for `finchby.ai` at the host. Then follow below.
