@@ -26,7 +26,11 @@ def fan(root, feathers, n, overlap=1.25, solid=.9):
     out.append(f'<path d="M{" L".join(pts)} Z"/>')
     return f'<g transform="translate({root[0]} {root[1]})">' + "".join(out) + "</g>"
 
-def finch(eye="#fff"):
+BEAK = '<path d="M150 432 L102 484 L158 506 Z"/>'
+# The crest's finch: a short, deep, conical beak set below a rounded forehead.
+BEAK_STOUT = '<path d="M143 450 Q122 462 106 489 Q128 499 153 502 Z"/>'
+
+def finch(eye="#fff", stout_beak=False):
     """House finch in flight, heading left and looking slightly down: upper wing
     raised in a broad fan, lower wing swept down and forward, tail fanned behind."""
     upper = fan((300, 412), [(-103, 275), (-92, 305), (-82, 315), (-66, 302), (-50, 284), (-30, 272), (-11, 262), (12, 240)], 15)
@@ -37,7 +41,7 @@ def finch(eye="#fff"):
     {tail}
     <ellipse cx="388" cy="492" rx="196" ry="80" transform="rotate(8 388 492)"/>
     <circle cx="196" cy="466" r="57"/>
-    <path d="M150 432 L102 484 L158 506 Z"/>
+    {BEAK_STOUT if stout_beak else BEAK}
     <circle cx="174" cy="450" r="9" fill="{eye}"/>"""
 
 LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 690 920" role="img" aria-labelledby="t">
@@ -70,37 +74,8 @@ NAME = "M10.80 -24.12L18.92 -24.12L18.40 -17.12L16.24 -17.12L15.80 -21.52L10.68 
 
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
-# Royal crown, after the carved royal arms of Scotland: a rim of ermine fur, a jewelled
-# gold circlet heightened with fleurs-de-lis and crosses, and a velvet cap within. Base at y=0.
-def _ermine(x, y):
-    return (f'<g transform="translate({x} {y}) scale(.55)" fill="{INK}" stroke="none"><circle cx="-1.3" cy="-2.6" r=".8"/>'
-            '<circle cx="1.3" cy="-2.6" r=".8"/><circle cy="-3.9" r=".8"/><path d="M0 -2 C-.6 0 -1.5 1.6 -1.9 2.6 L0 1.7 L1.9 2.6 C1.5 1.6 .6 0 0 -2 Z"/></g>')
-_FLEUR = ("M0 -11 C2.2 -9 2.4 -5.6 1 -2.6 H-1 C-2.4 -5.6 -2.2 -9 0 -11 Z "
-          "M-1 -3 C-2.6 -3.4 -5 -5 -4.6 -7.8 C-3.4 -7 -2 -5.8 -1.2 -4.6 Z M1 -3 C2.6 -3.4 5 -5 4.6 -7.8 C3.4 -7 2 -5.8 1.2 -4.6 Z "
-          "M-3 -2.6 H3 V-1 H-3 Z")
-_CROSS = "M-1.2 0 V-6.6 H-4.6 V-9 H-1.2 V-12.4 H1.2 V-9 H4.6 V-6.6 H1.2 V0 Z"
-CROWN = f"""<path d="M-15.5 -13 C-15.5 -20 -8 -23 0 -23 C8 -23 15.5 -20 15.5 -13 Z" fill="{INK}"/>
-    <g fill="url(#or)" stroke-width="1.1"><path d="{_FLEUR}" transform="translate(-10 -13.6) scale(1.3)"/><path d="{_FLEUR}" transform="translate(10 -13.6) scale(1.3)"/>
-    <path d="{_CROSS}" transform="translate(0 -14) scale(1.3)"/>
-    <path d="{_FLEUR}" transform="translate(-17.6 -13.4) scale(.8 1.1)"/><path d="{_FLEUR}" transform="translate(17.6 -13.4) scale(.8 1.1)"/></g>
-    <path d="M-18 -8.6 C-9 -10.4 9 -10.4 18 -8.6 L17.4 -14 C9 -15.6 -9 -15.6 -17.4 -14 Z" fill="url(#or)"/>
-    <ellipse cx="-9" cy="-11.6" rx="2" ry="1.3"/><path d="M0 -13.8 L2 -11.8 L0 -9.8 L-2 -11.8 Z"/><ellipse cx="9" cy="-11.6" rx="2" ry="1.3"/>
-    <path d="M-21 -1.4 C-22.4 -6 -20.6 -9.6 -17 -9.6 C-9 -11 9 -11 17 -9.6 C20.6 -9.6 22.4 -6 21 -1.4 C13 1.4 -13 1.4 -21 -1.4 Z"/>
-    {_ermine(-14, -4.2)}{_ermine(-5, -4.8)}{_ermine(5, -4.8)}{_ermine(14, -4.2)}"""
-
-# Royal helm, after the royal arms carved in Scotland: a tilting helm in profile facing
-# left, the same way as the finch, edged in gold, with a sight slit above a projecting
-# face plate. Base at y=0.
-_HO = "M18 0 C18 -12 20 -27 17 -37 C14 -46 5 -50 -4 -50 C-11 -50 -15.5 -45 -16 -36 L-16.4 -32.4 L-26 -28 C-25 -19 -21 -12 -15 -7 C-12 -4.5 -12 -2 -14 0 Z"
-_HP = "M5 -29 C6 -20 3 -11 -7 -3"
-HELM = f"""<path d="{_HO}" fill="#fff" stroke-width="5.6"/>
-    <path d="{_HO}" fill="none" stroke="url(#or)" stroke-width="3"/>
-    <path d="{_HP}" fill="none" stroke-width="4.4"/><path d="{_HP}" fill="none" stroke="url(#or)" stroke-width="2"/>
-    <path d="M-16.4 -32.8 L6.5 -32.8 C6.9 -31.4 6.9 -30.2 6.5 -29.4 L-24.6 -28.4 Z" fill="{INK}" stroke-width="1"/>
-    <path d="M-13 -38 C-4 -40 7 -39.4 15 -36" fill="none" stroke-width="1"/>"""
-
-CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, beneath a royal helm wearing an open crown, with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
+CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 474" role="img" aria-labelledby="ct">
+  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, with a finch in flight above, the motto Grip Fast and the name Finchby</title>
   <defs>
     <!-- engraver's hatching: horizontal lines = blue, vertical lines = red, dots = gold -->
     <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="{INK}" stroke-width=".8"/></pattern>
@@ -118,8 +93,8 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(158.4 22.6) scale(.1)" fill="{INK}">
-  {finch()}
+  <g transform="translate(152 92.9) scale(.115)" fill="{INK}">
+  {finch(stout_beak=True)}
   </g>
   <!-- shield: three fields -->
   <path d="{SHIELD}" fill="#fff"/>
@@ -140,14 +115,6 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role
     <path d="M-4 20 V22.6 M-1.5 20.6 V22.3 M1.5 20.6 V22 M4 20 V21.6" fill="none" stroke-width="1.1"/>
   </g>
   <path d="{SHIELD}" fill="none" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>
-
-  <!-- helm: a royal helm in profile facing left, edged in gold, crowned -->
-  <g transform="translate(201 212) scale(1.35 1.2)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
-    {HELM}
-  </g>
-  <g transform="translate(198 155) scale(1.15)" fill="#fff" stroke="{INK}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
-    {CROWN}
-  </g>
 
   <!-- 2. agility: a wing -->
   <g transform="translate(247 246) scale(1.05)" fill="#fff" stroke="{INK}" stroke-width="1.7" stroke-linejoin="round">
