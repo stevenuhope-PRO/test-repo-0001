@@ -16,9 +16,9 @@ def fan(root, feathers, n, overlap=1.25, solid=.9):
         f = i / (n - 1) * (len(feathers) - 1)
         k = min(int(f), len(feathers) - 2); u = f - k
         fs.append((feathers[k][0] * (1-u) + feathers[k+1][0] * u, feathers[k][1] * (1-u) + feathers[k+1][1] * u))
-    step = abs(fs[1][0] - fs[0][0])
     out, pts = [], ["0 0"]
-    for ang, L in fs:
+    for i, (ang, L) in enumerate(fs):
+        step = max(abs(fs[min(i+1, n-1)][0] - ang), abs(ang - fs[max(i-1, 0)][0]))   # local spacing
         w = L * math.sin(math.radians(step / 2)) * overlap
         out.append(f'<path d="M0 {-w*.3:.1f} L{L-w:.1f} {-w:.1f} A{w:.1f} {w:.1f} 0 0 1 {L-w:.1f} {w:.1f} L0 {w*.3:.1f} Z" transform="rotate({ang:.1f})"/>')
         r = L * solid
@@ -29,8 +29,8 @@ def fan(root, feathers, n, overlap=1.25, solid=.9):
 def finch(eye="#fff"):
     """House finch in flight, heading left and looking slightly down: upper wing
     raised in a broad fan, lower wing swept down and forward, tail fanned behind."""
-    upper = fan((300, 412), [(-103, 255), (-92, 285), (-82, 295), (-66, 282), (-50, 264), (-30, 254), (-11, 250), (12, 236)], 15)
-    lower = fan((290, 548), [(120, 388), (112, 406), (105, 399), (98, 364), (93, 326), (84, 301), (73, 282), (62, 259), (50, 241), (36, 229), (21, 225), (5, 226)], 17)
+    upper = fan((300, 412), [(-103, 275), (-92, 305), (-82, 315), (-66, 302), (-50, 284), (-30, 272), (-11, 262), (12, 240)], 15)
+    lower = fan((290, 548), [(114, 414), (109, 430), (103, 426), (98, 396), (93, 358), (85, 333), (75, 312), (65, 288), (54, 267), (42, 249), (28, 238), (13, 231)], 17)
     tail  = fan((540, 512), [(-31, 158), (-8, 180), (10, 191), (26, 203), (39, 228), (54, 236)], 8, 1.15)
     return f"""{upper}
     {lower}
