@@ -1,14 +1,15 @@
 # finchby.ai website prototypes
 
-Three home page prototypes for Finchby, an SEO agency for the AI search era. Each version lives in its own folder with its preview page and its Elementor import file.
+Four website prototypes for Finchby, an SEO agency for the AI search era. Each version lives in its own folder. V1 is a multi-page site with its own build guide; V2–V4 are home page prototypes, each with its preview page and its Elementor import file.
 
 | Version | Direction | Preview | Elementor import |
 |---|---|---|---|
+| V1 | Original multi-page site (home, services, approach, about, contact) with finch logo and crest; WordPress build guide in `finchby_website_V1/docs/` | `finchby_website_V1/index.html` | — |
 | V2 | Light, editorial, trust-led (cream, forest green, goldfinch yellow, serif headings) | `v2/index.html` | `v2/finchby-v2-elementor.json` |
 | V3 | Light, conversion-led (white, blue accent, 10 services, plan comparison table, industries section) | `v3/index.html` | `v3/finchby-v3-elementor.json` |
 | V4 | Professional, consultancy-style (white, navy, restrained blue and gold, services grouped into three practice areas, formal tone) | `v4/index.html` | `v4/finchby-v4-elementor.json` |
 
-Open any `index.html` in a browser to preview. Each is one self-contained file.
+Open any `index.html` in a browser to preview. V2–V4 are each one self-contained file; V1 links to its other pages and its `assets/` folder.
 
 ## Before launch: placeholders to replace
 
