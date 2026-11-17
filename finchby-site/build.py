@@ -466,12 +466,12 @@ BODY["about.html"] = """
 <section class="soft">
   <div class="wrap">
     <div class="grid-2" style="align-items:center">
-      <div class="center"><img src="assets/img/crest.svg" alt="The Finchby crest: a shield with a chevron, three buckles and three roundels, topped by a helm and a finch in flight, with the motto Grip Fast" width="300" height="390" style="width:300px"></div>
+      <div class="center"><img src="assets/img/crest.svg" alt="The Finchby crest: a shield with a chevron, three buckles and three roundels, framed by laurel branches, with a finch in flight above and the motto Grip Fast" width="300" height="390" style="width:300px"></div>
       <div>
         <p class="eyebrow">The crest</p>
         <h2>Where the finch comes from</h2>
         <p>The finch is small, quick and precise, which is how we like to work. It's our logo, and it sits at the top of the crest.</p>
-        <p>The shield borrows from the founder's Scottish family heritage. The chevron and three roundels come from the arms of Hope, and the three buckles and the motto <em>Grip Fast</em> come from Leslie. It's drawn in the traditional engraver's style, where line patterns stand for colors: horizontal lines for blue, dots for gold.</p>
+        <p>The shield borrows from the founder's Scottish family heritage. The chevron and three roundels come from the arms of Hope, and the three buckles and the motto <em>Grip Fast</em> come from Leslie. The laurel branches around it are the long-standing mark of work judged on merit. It's drawn in the traditional engraver's style, where line patterns stand for colors: horizontal lines for blue, dots for gold.</p>
         <p class="small">The crest is a company emblem inspired by those family arms, not an official grant of arms.</p>
       </div>
     </div>
