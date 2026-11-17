@@ -53,7 +53,7 @@ def laurel():
     cx, cy, r = 200, 300, 138
     pt = lambda th: (cx + r * math.cos(math.radians(th)), cy + r * math.sin(math.radians(th)))
     leaf = "M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z"
-    angs = [104 + i * 9.6 for i in range(9)]
+    angs = [104 + i * 9.6 for i in range(13)]
     (x0, y0), (x1, y1) = pt(98), pt(angs[-1] + 6)
     parts = [f'<path d="M{x0:.1f} {y0:.1f} A{r} {r} 0 0 1 {x1:.1f} {y1:.1f}" fill="none" stroke-width="2"/>']
     for i, th in enumerate(angs):
@@ -70,32 +70,32 @@ NAME = "M10.80 -24.12L18.92 -24.12L18.40 -17.12L16.24 -17.12L15.80 -21.52L10.68 
 
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
-def ermine(x, y, k=1):
-    """One ermine spot: a tail with three dots above it, the fur of a royal lining."""
-    return (f'<g transform="translate({x} {y}) scale({k})" fill="{INK}" stroke="none">'
-            '<circle cx="-1.3" cy="-2.6" r=".75"/><circle cx="1.3" cy="-2.6" r=".75"/><circle cy="-3.9" r=".75"/>'
-            '<path d="M0 -2 C-.6 0 -1.5 1.6 -1.9 2.6 L0 1.7 L1.9 2.6 C1.5 1.6 .6 0 0 -2 Z"/></g>')
-
-# Mantle (left half; mirrored for the right): cloth draped from the top of the helm over
-# the shield's upper corner, its end cut into points and turned back to show the ermine lining.
-MANTLE = f"""<path d="M200 142 C190 143 182 150 178 162 C172 180 148 192 124 200 C106 206 94 220 88 238 C84 252 82 266 82 282 L92 272 L95 296 L104 281 L110 292 L124 212 H200 Z" fill="{TINT}"/>
-    <path d="M110 205 C98 216 91 230 87 246 C84 258 82 270 82 282 L92 272 L95 296 L104 281 C99 262 100 236 112 214 Z" fill="#fff"/>
-    {ermine(92, 252)}{ermine(95, 276)}{ermine(103, 230, .9)}
-    <path d="M172 176 C150 192 130 204 118 214 M186 168 C176 186 150 202 124 214" fill="none" stroke-width=".9"/>"""
+# Royal crown, set on the helm as on the Hope arms: a jewelled gold band with crosses
+# and pearls on its rim, a dark velvet cap, gold arches, and an orb and cross. Base at y=0.
+CROWN = f"""<path d="M-17 -7 C-18 -19 -10 -24 0 -24 C10 -24 18 -19 17 -7 Z" fill="{INK}"/>
+    <path d="M-16 -8 C-17 -18 -9 -23 -2 -20.5 L0 -19 L2 -20.5 C9 -23 17 -18 16 -8 M0 -9 V-19" fill="none" stroke-width="3.6"/>
+    <path d="M-16 -8 C-17 -18 -9 -23 -2 -20.5 L0 -19 L2 -20.5 C9 -23 17 -18 16 -8 M0 -9 V-19" fill="none" stroke="#fff" stroke-width="1.6"/>
+    <path d="M0 -6.5 L-2.4 -11.5 L-1 -10 L0 -12.6 L1 -10 L2.4 -11.5 Z M-15 -6.5 L-17 -10.6 L-15 -9.4 L-13 -10.6 Z M15 -6.5 L13 -10.6 L15 -9.4 L17 -10.6 Z" fill="url(#or)" stroke-width="1"/>
+    <circle cx="-7.5" cy="-9" r="1.6"/><circle cx="7.5" cy="-9" r="1.6"/>
+    <rect x="-19" y="-7" width="38" height="8" rx="1.5" fill="url(#or)"/>
+    <ellipse cx="-10.5" cy="-3" rx="2.5" ry="1.7"/><path d="M0 -5.6 L2.5 -3 L0 -.4 L-2.5 -3 Z"/><ellipse cx="10.5" cy="-3" rx="2.5" ry="1.7"/>
+    <circle cy="-24.5" r="3.4" fill="url(#or)"/>
+    <path d="M0 -28 V-35 M-2.8 -31.6 H2.8" fill="none" stroke-width="2.2"/>"""
 
 # Royal helm: gold, facing the viewer, with a barred face guard.
 HELM = f"""<path d="M-17 -12 C-21 -24 -20 -40 -12 -47 C-6 -52 6 -52 12 -47 C20 -40 21 -24 17 -12 L22 -3 C23 0 21 2 18 2 H-18 C-21 2 -23 0 -22 -3 Z" fill="url(#or)"/>
-    <path d="M-11 -37 C-6 -40 6 -40 11 -37 L10 -18 C6 -14 -6 -14 -10 -18 Z" fill="{INK}" stroke-width="1.2"/>
-    <path d="M-7.5 -38.6 V-15.6 M-3.8 -39.4 V-14.6 M0 -39.6 V-14.4 M3.8 -39.4 V-14.6 M7.5 -38.6 V-15.6" stroke="#fff" stroke-width="1.4" fill="none"/>
-    <path d="M0 -51 V-40 M-17 -12 C-8 -10 8 -10 17 -12 M-20 -6 H20" fill="none" stroke-width="1.1"/>
-    <circle cx="-15" cy="-27" r="1.6" fill="#fff"/><circle cx="15" cy="-27" r="1.6" fill="#fff"/>"""
+    <path d="M-13.5 -38 C-7 -42.5 7 -42.5 13.5 -38 L12.5 -19 C7 -13.5 -7 -13.5 -12.5 -19 Z" fill="{INK}" stroke-width="1.2"/>
+    <path d="M-9 -39.6 V-15.6 M-4.5 -40.8 V-14.4 M0 -41.2 V-14 M4.5 -40.8 V-14.4 M9 -39.6 V-15.6 M-13 -28 H13" stroke="#fff" stroke-width="1.4" fill="none"/>
+    <path d="M0 -51 V-42.5 M-17 -12 C-8 -10 8 -10 17 -12 M-20 -6 H20" fill="none" stroke-width="1.1"/>
+    <circle cx="-16.5" cy="-28" r="1.5" fill="#fff"/><circle cx="16.5" cy="-28" r="1.5" fill="#fff"/>"""
 
-CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel and an ermine-lined mantle, beneath a royal helm with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
+CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 26 320 532" role="img" aria-labelledby="ct">
+  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, beneath a crowned royal helm with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
   <defs>
-    <!-- engraver's hatching: horizontal lines = blue, dots = gold -->
+    <!-- engraver's hatching: horizontal lines = blue, vertical lines = red, dots = gold -->
     <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="{INK}" stroke-width=".8"/></pattern>
     <pattern id="or" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#fff"/><circle cx="1.5" cy="1.5" r=".7" fill="{INK}"/><circle cx="4.5" cy="4.5" r=".7" fill="{INK}"/></pattern>
+    <pattern id="gu" width="3" height="3" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="#fff"/><path d="M1.5 0 V3" stroke="{INK}" stroke-width=".7"/></pattern>
     <clipPath id="sh"><path d="{SHIELD}"/></clipPath>
     <g id="laurel" fill="{TINT}" stroke="{INK}" stroke-width="1.3" stroke-linejoin="round">
       {laurel()}
@@ -103,18 +103,12 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role
     <g id="buckle" fill="none" stroke="{INK}"><circle r="7" stroke-width="2.4" fill="#fff"/><path d="M-7 0 H5" stroke-width="2"/></g>
   </defs>
 
-  <!-- mantle, draped from the helm on both sides and lined with ermine -->
-  <g id="mantle" stroke="{INK}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
-    {MANTLE}
-  </g>
-  <use href="#mantle" transform="translate(400 0) scale(-1 1)"/>
-
   <use href="#laurel"/>
   <use href="#laurel" transform="translate(400 0) scale(-1 1)"/>
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(158.4 54.6) scale(.1)" fill="{INK}">
+  <g transform="translate(158.4 29.6) scale(.1)" fill="{INK}">
   {finch()}
   </g>
   <!-- shield: three fields -->
@@ -138,8 +132,11 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role
   <path d="{SHIELD}" fill="none" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>
 
   <!-- helm: a royal helm, gold, facing the viewer, with a barred face guard -->
-  <g transform="translate(200 212) scale(1.4)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+  <g transform="translate(200 212) scale(1.35 1.15)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
     {HELM}
+  </g>
+  <g transform="translate(200 160) scale(1.2)" fill="#fff" stroke="{INK}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+    {CROWN}
   </g>
 
   <!-- 2. agility: a wing -->
