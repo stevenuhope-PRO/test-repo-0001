@@ -53,7 +53,7 @@ def _bez(p0, p1, p2, p3, n=12):
     return [tuple((1-t)**3*a + 3*(1-t)**2*t*b + 3*(1-t)*t*t*c + t**3*d for a, b, c, d in zip(p0, p1, p2, p3))
             for t in (i / n for i in range(n + 1))]
 
-def stem(pt, w0=3.1, w1=1.3):
+def stem(pt, w0=2.6, w1=1.0):
     """The laurel's stem as a filled shape that tapers from w0 at its cut end, which runs
     on past the other stem beneath the shield so the two cross, to w1 at its tip."""
     end = _bez((209.4, 446.2), (206.6, 444), (203.6, 442.4), (200, 441.6)) + \
