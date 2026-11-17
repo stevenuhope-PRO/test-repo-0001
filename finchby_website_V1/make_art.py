@@ -96,10 +96,10 @@ def scroll_ornaments(k=1, edge_drop=20):
         out.append(f'<path d="M{x-4:.1f} {y:.1f} L{x:.1f} {y-3.2:.1f} L{x+4:.1f} {y:.1f} L{x:.1f} {y+3.2:.1f} Z"/>')
     return "".join(out)
 
-# The knot where the laurel stems meet: the two stems join in one line that loops once,
-# crossing itself just under the shield's point.
-KNOT = ("M184.4 439.13 C189.4 439.7 194.6 441.6 198.6 440.6 C203.6 439 207.4 434 203.6 431.4 "
-        "C199.6 428.8 194.6 432.4 197.6 436.8 C199.4 439.4 202.4 441.4 206 441.4 C208.4 441.4 210.6 439.7 215.6 439.13")
+# The knot where the laurel stems meet: the two stems cross under the shield's point, loop
+# once above the crossing, and end in two short cut ends lying out to either side, about
+# 40 degrees below level, like string laid flat on a table. Symmetric left to right.
+KNOT = "M184.4 439.13 C189.4 439.7 195.4 441.6 200 440.4 M200 440.4 C204.2 437.6 206 431.2 200 430.6 M200 440.4 C195.8 437.6 194 431.2 200 430.6 M215.6 439.13 C210.6 439.7 204.6 441.6 200 440.4 M200 440.4 C197.6 442.2 195.4 443.8 193.4 445.8 M200 440.4 C202.4 442.2 204.6 443.8 206.6 445.8"
 
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
