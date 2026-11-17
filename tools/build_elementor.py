@@ -5,7 +5,7 @@ Each top-level <header>/<section>/<footer> becomes one full-width Elementor
 container holding an HTML widget, so the import is pixel-identical to the
 prototype. The page CSS and font links ride along in the first container.
 
-Usage: python3 tools/build_elementor.py v2 v3
+Usage: python3 tools/build_elementor.py v2 v3 v4
 """
 import json, re, sys, uuid, pathlib
 
@@ -47,12 +47,11 @@ def build(version):
         content.append(container(html, label.capitalize()))
     template = {"content": content, "page_settings": {"template": "elementor_canvas"},
                 "version": "0.4", "title": f"Finchby {version.upper()} Home", "type": "page"}
-    out = ROOT / "elementor" / f"finchby-{version}-home.json"
-    out.parent.mkdir(exist_ok=True)
+    out = ROOT / version / f"finchby-{version}-elementor.json"
     out.write_text(json.dumps(template, indent=1))
     print(f"{out.relative_to(ROOT)}: {len(content)} containers")
 
 
 if __name__ == "__main__":
-    for v in sys.argv[1:] or ["v2", "v3"]:
+    for v in sys.argv[1:] or ["v2", "v3", "v4"]:
         build(v)

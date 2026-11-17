@@ -1,17 +1,19 @@
 # finchby.ai website prototypes
 
-Two home page prototypes for Finchby, an SEO agency for the AI search era.
+Three home page prototypes for Finchby, an SEO agency for the AI search era. Each version lives in its own folder with its preview page and its Elementor import file.
 
 | Version | Direction | Preview | Elementor import |
 |---|---|---|---|
-| V2 | Light, editorial, trust-led (cream, forest green, goldfinch yellow, serif headings) | `v2/index.html` | `elementor/finchby-v2-home.json` |
-| V3 | Light, conversion-led (white, blue accent, 10 services, plan comparison table, industries section) | `v3/index.html` | `elementor/finchby-v3-home.json` |
+| V2 | Light, editorial, trust-led (cream, forest green, goldfinch yellow, serif headings) | `v2/index.html` | `v2/finchby-v2-elementor.json` |
+| V3 | Light, conversion-led (white, blue accent, 10 services, plan comparison table, industries section) | `v3/index.html` | `v3/finchby-v3-elementor.json` |
+| V4 | Professional, consultancy-style (white, navy, restrained blue and gold, services grouped into three practice areas, formal tone) | `v4/index.html` | `v4/finchby-v4-elementor.json` |
 
-Open either `index.html` in a browser to preview. Each is one self-contained file.
+Open any `index.html` in a browser to preview. Each is one self-contained file.
 
 ## Before launch: placeholders to replace
 
-- **Pricing** ($2,500 audit, $3,500/month Growth) is sample pricing.
+- **Pricing** ($2,500 audit, $3,500/month program) is sample pricing.
+- **V4 commitments** (named strategist, written plan first, two-business-day reply, asset ownership) are proposed policies. Keep only those you will honor.
 - **hello@finchby.ai** is an assumed address.
 - **V3 hero report** and **V2 hero AI answer** are labeled illustrations, not real data.
 - No testimonials, client logos or results are included. Add real ones when you have them.
@@ -21,18 +23,18 @@ Open either `index.html` in a browser to preview. Each is one self-contained fil
 
 1. Install the **Hello Elementor** theme, **Elementor** and **Yoast SEO**.
 2. Pages → Add New → Edit with Elementor.
-3. Folder icon (Add Template) → upload arrow → import `elementor/finchby-v2-home.json` or `-v3-`, then Insert.
+3. Folder icon (Add Template) → upload arrow → import the version's `finchby-vN-elementor.json`, then Insert.
 4. Page Settings → Page Layout → **Elementor Canvas** (the template carries its own header and footer).
 5. Settings → Reading → set the page as the static home page.
 
-The import uses one full-width container per section, each holding an HTML widget, so it looks identical to the prototype. Fonts and CSS travel in the first container. To make a section editable with native widgets, rebuild it container by container using the same section order; class names (`fb-*` for V2, `f3-*` for V3) can be pasted into each widget's Advanced → CSS Classes to reuse the styling.
+The import uses one full-width container per section, each holding an HTML widget, so it looks identical to the prototype. Fonts and CSS travel in the first container. To make a section editable with native widgets, rebuild it container by container using the same section order; class names (`fb-*` for V2, `f3-*` for V3, `f4-*` for V4) can be pasted into each widget's Advanced → CSS Classes to reuse the styling.
 
 Swap the contact `<form>` for the Elementor **Form** widget (Pro) or your forms plugin. Swap the FAQ for the **Yoast FAQ block** or Elementor Accordion with FAQ schema enabled, so FAQPage structured data is generated for you.
 
 Regenerate the templates after editing a prototype:
 
 ```bash
-python3 tools/build_elementor.py v2 v3
+python3 tools/build_elementor.py v2 v3 v4
 ```
 
 ## Yoast SEO settings
@@ -43,7 +45,7 @@ The prototypes follow Yoast's checks: one H1 per page, focus keyphrase in the ti
 
 | Page | Slug | Focus keyphrase | SEO title | Meta description |
 |---|---|---|---|---|
-| Home | `/` | AI SEO agency | AI SEO Agency \| SEO for the AI Search Era \| Finchby | Finchby is an AI SEO agency. We get your brand found in Google, AI Overviews, ChatGPT, Perplexity and Gemini with technical SEO, content and GEO. |
+| Home | `/` | AI SEO agency | AI SEO Agency \| SEO for the AI Search Era \| Finchby (V4: AI SEO Agency \| Search Visibility for the AI Era \| Finchby) | Finchby is an AI SEO agency. We get your brand found in Google, AI Overviews, ChatGPT, Perplexity and Gemini with technical SEO, content and GEO. |
 | AI Search Visibility Audit | `/ai-search-visibility-audit/` | AI search visibility audit | AI Search Visibility Audit \| Finchby | See how ChatGPT, Gemini, Perplexity and AI Overviews describe your brand, who they cite instead, and what to fix first. |
 | Generative Engine Optimization | `/generative-engine-optimization/` | generative engine optimization services | Generative Engine Optimization (GEO) Services \| Finchby | GEO services that get your brand mentioned and cited by AI assistants. Prompt research, answer-ready content and citation building. |
 | Technical SEO | `/technical-seo/` | technical SEO services | Technical SEO Services \| Finchby | Technical SEO audits, Core Web Vitals, crawl and index fixes, AI crawler access and safe site migrations. |
