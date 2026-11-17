@@ -54,8 +54,17 @@
   </g>
   <!-- wreath -->
   <g stroke="#14261f" stroke-width="1.6" stroke-linejoin="round">
-    <path d="M158 194 H242 V208 H158 Z" fill="#fff"/>
-    <path d="M158 208 L166 194 H180 L172 208 Z M186 208 L194 194 H208 L200 208 Z M214 208 L222 194 H236 L228 208 Z" fill="#14261f"/>
+    <clipPath id="wr"><path d="M165.0 194 H235.0 A7.0 7.0 0 0 1 235.0 208 H165.0 A7.0 7.0 0 0 1 165.0 194 Z"/></clipPath>
+    <path d="M165.0 194 H235.0 A7.0 7.0 0 0 1 235.0 208 H165.0 A7.0 7.0 0 0 1 165.0 194 Z" fill="#fff"/>
+    <g clip-path="url(#wr)">
+    <path d="M151.0 194 Q155.0 201.0 145.0 208 L169.0 208 Q179.0 201.0 175.0 194 Z" fill="#fff" stroke-width="1.2"/>
+    <path d="M175.0 194 Q179.0 201.0 169.0 208 L183.0 208 Q193.0 201.0 189.0 194 Z" fill="#14261f" stroke-width="1.2"/>
+    <path d="M189.0 194 Q193.0 201.0 183.0 208 L197.0 208 Q207.0 201.0 203.0 194 Z" fill="#fff" stroke-width="1.2"/>
+    <path d="M203.0 194 Q207.0 201.0 197.0 208 L211.0 208 Q221.0 201.0 217.0 194 Z" fill="#14261f" stroke-width="1.2"/>
+    <path d="M217.0 194 Q221.0 201.0 211.0 208 L225.0 208 Q235.0 201.0 231.0 194 Z" fill="#fff" stroke-width="1.2"/>
+    <path d="M231.0 194 Q235.0 201.0 225.0 208 L249.0 208 Q259.0 201.0 255.0 194 Z" fill="#14261f" stroke-width="1.2"/>
+    </g>
+    <path d="M165.0 194 H235.0 A7.0 7.0 0 0 1 235.0 208 H165.0 A7.0 7.0 0 0 1 165.0 194 Z" fill="none"/>
   </g>
 
   <!-- shield: three fields -->

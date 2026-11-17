@@ -65,6 +65,22 @@ def laurel():
 
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
+def wreath(x0=158, x1=242, y0=194, y1=208, n=6):
+    """The torse: a roll of two colours of silk twisted together, shown side-on
+    as n curved twists alternating white and ink, with rounded ends."""
+    w, r = (x1 - x0) / n, (y1 - y0) / 2
+    edge = lambda x: f"{x+3:.1f} {y0} Q{x+7:.1f} {y0+r:.1f} {x-3:.1f} {y1}"   # one twist boundary, top to bottom
+    roll = f"M{x0+r} {y0} H{x1-r} A{r} {r} 0 0 1 {x1-r} {y1} H{x0+r} A{r} {r} 0 0 1 {x0+r} {y0} Z"
+    parts = [f'<clipPath id="wr"><path d="{roll}"/></clipPath>', f'<path d="{roll}" fill="#fff"/>', '<g clip-path="url(#wr)">']
+    for i in range(n):
+        a, b = x0 + i * w, x0 + (i + 1) * w
+        fill = INK if i % 2 else "#fff"
+        if i == 0: a -= 10          # end twists run past the rounded ends, which clip them
+        if i == n - 1: b += 10
+        parts.append(f'<path d="M{edge(a)} L{b-3:.1f} {y1} Q{b+7:.1f} {y0+r:.1f} {b+3:.1f} {y0} Z" fill="{fill}" stroke-width="1.2"/>')
+    parts += ["</g>", f'<path d="{roll}" fill="none"/>']
+    return "\n    ".join(parts)
+
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role="img" aria-labelledby="ct">
   <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel, with a finch in flight above and the motto Grip Fast</title>
   <defs>
@@ -88,8 +104,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 84 320 430" role
   </g>
   <!-- wreath -->
   <g stroke="{INK}" stroke-width="1.6" stroke-linejoin="round">
-    <path d="M158 194 H242 V208 H158 Z" fill="#fff"/>
-    <path d="M158 208 L166 194 H180 L172 208 Z M186 208 L194 194 H208 L200 208 Z M214 208 L222 194 H236 L228 208 Z" fill="{INK}"/>
+    {wreath()}
   </g>
 
   <!-- shield: three fields -->
