@@ -7,45 +7,65 @@ INK, TINT = "#14261f", "#dfe8e2"
 OUT = pathlib.Path(__file__).parent / "assets" / "img"
 
 # ------------------------------------------------------------------ finch
-def fan(root, feathers, n, overlap=1.25, solid=.9):
-    """A wing or tail: round-tipped feathers fanned from a root point, giving a
-    scalloped edge. feathers = [(angle clockwise from pointing right, length), ...]
-    measured from the reference pose; they are interpolated to n feathers."""
-    fs = []
+# Feather lengths of each wing and the tail, measured from the reference photo of
+# a house finch in flight by trace_reference.py: (angle clockwise from pointing
+# right, length) from the wing's root, in logo units.
+UPPER = [(-115, 253), (-112, 261), (-109, 270), (-106, 270), (-103, 277), (-100, 286), (-97, 282), (-94, 285), (-91, 283), (-88, 266), (-85, 268), (-82, 268), (-79, 253), (-76, 250), (-73, 246), (-70, 238), (-67, 236), (-64, 226), (-61, 212), (-58, 216), (-55, 218), (-52, 216), (-49, 208), (-46, 206), (-43, 207), (-40, 202), (-37, 201), (-34, 196), (-31, 196), (-28, 197), (-25, 193), (-22, 191), (-19, 192), (-16, 189), (-13, 184), (-10, 186), (-7, 187), (-4, 184), (-1, 182), (2, 183)]
+LOWER = [(28, 199), (31, 202), (34, 206), (37, 206), (40, 209), (43, 216), (46, 220), (49, 220), (52, 226), (55, 233), (58, 236), (61, 239), (64, 245), (67, 249), (70, 258), (73, 265), (76, 270), (79, 281), (82, 286), (85, 294), (88, 307), (91, 313), (94, 328), (97, 339), (100, 356), (103, 373), (106, 387), (109, 391), (112, 399), (115, 401), (118, 396), (121, 350), (124, 236), (125, 182)]
+TAIL  = [(-42, 122), (-39, 129), (-36, 136), (-33, 137), (-30, 135), (-27, 139), (-24, 144), (-21, 144), (-18, 142), (-15, 142), (-12, 147), (-9, 154), (-6, 154), (-3, 153), (0, 150), (3, 147), (6, 156), (9, 164), (12, 162), (15, 159), (18, 161), (21, 148), (24, 154), (27, 177), (30, 183), (33, 186), (36, 194), (39, 199), (42, 204), (45, 196), (48, 180), (51, 191), (54, 205), (57, 208), (60, 206), (63, 203), (66, 174), (68, 159)]
+
+def length(profile, a):
+    """Feather length at angle a, interpolated from a measured profile."""
+    for (a0, l0), (a1, l1) in zip(profile, profile[1:]):
+        if a0 <= a <= a1:
+            return l0 + (l1 - l0) * (a - a0) / (a1 - a0)
+    return profile[0][1] if a < profile[0][0] else profile[-1][1]
+
+def feather(L, w, ang, side=1):
+    """One flight feather pointing along +x: a straight leading vane, a sharp tip
+    set toward the leading side, and the trailing vane cut back at an angle, as
+    on a real primary. side flips which edge leads."""
+    y = lambda v: v * side
+    return (f'<path d="M0 {y(-.4*w):.1f} L{L-1.2*w:.1f} {y(-w):.1f} Q{L-.3*w:.1f} {y(-.85*w):.1f} {L:.1f} {y(-.3*w):.1f} '
+            f'L{L-2.2*w:.1f} {y(w):.1f} L0 {y(.4*w):.1f} Z" transform="rotate({ang:.1f})"/>')
+
+def wing(root, profile, a0, a1, n, side=1, gap=.92, fingers=0, solid=.78):
+    """n feathers fanned from root between angles a0 and a1. Each feather is
+    slightly narrower than its share of the fan, so the tips stand apart in a
+    jagged edge; the first `fingers` feathers (the outer primaries) are narrower
+    still and spread like fingers. The inner part of the fan is filled solid."""
+    out, pts, da = [], ["0 0"], (a1 - a0) / (n - 1)
     for i in range(n):
-        f = i / (n - 1) * (len(feathers) - 1)
-        k = min(int(f), len(feathers) - 2); u = f - k
-        fs.append((feathers[k][0] * (1-u) + feathers[k+1][0] * u, feathers[k][1] * (1-u) + feathers[k+1][1] * u))
-    out, pts = [], ["0 0"]
-    for i, (ang, L) in enumerate(fs):
-        step = max(abs(fs[min(i+1, n-1)][0] - ang), abs(ang - fs[max(i-1, 0)][0]))   # local spacing
-        w = L * math.sin(math.radians(step / 2)) * overlap
-        out.append(f'<path d="M0 {-w*.3:.1f} L{L-w:.1f} {-w:.1f} A{w:.1f} {w:.1f} 0 0 1 {L-w:.1f} {w:.1f} L0 {w*.3:.1f} Z" transform="rotate({ang:.1f})"/>')
-        r = L * solid
-        pts.append(f"{r*math.cos(math.radians(ang)):.1f} {r*math.sin(math.radians(ang)):.1f}")
+        a = a0 + i * da; L = length(profile, a)
+        g = gap - (.22 * (1 - i / fingers) if i < fingers else 0)
+        out.append(feather(L, .5 * g * L * math.radians(abs(da)), a, side))
+        pts.append(f"{L*solid*math.cos(math.radians(a)):.1f} {L*solid*math.sin(math.radians(a)):.1f}")
     out.append(f'<path d="M{" L".join(pts)} Z"/>')
     return f'<g transform="translate({root[0]} {root[1]})">' + "".join(out) + "</g>"
 
 def head(eye="#fff"):
-    """House-finch head in profile: domed crown, steep forehead and a short, deep,
-    conical seed-cracker's beak with a curved culmen, angled a touch below the
-    flight line. A clean gape line and a forward-set eye give it a focused look."""
-    return f"""<path d="M106 476 C107 473 109 470 111 467 C116 460 128 454 145 450 C149 430 164 413 191 407 C220 402 248 406 270 413 L312 406 L340 440 L340 540 L276 544 C238 538 194 524 166 497 C160 492 153 489 147 489 C133 489 116 486 108 480 C106 479 106 477 106 476 Z"/>
-    <path d="M147 471 C136 472 124 474 114 477" fill="none" stroke="{eye}" stroke-width="2.4" stroke-linecap="round"/>
-    <circle cx="181" cy="443" r="9.5" fill="{eye}"/>
-    <circle cx="179.5" cy="443.5" r="6.8"/>
-    <circle cx="177" cy="441" r="1.9" fill="{eye}"/>"""
+    """Head and body in profile, from the photo: a long flat crown, the forehead
+    running straight into a stout conical seed-cracker's beak, and a long
+    sloping throat. A heavy brow ridge cuts across the top of the eye and slants
+    down toward the beak, for an eagle's level, focused stare."""
+    return f"""<path d="M104 477 C112 465 124 453 140 446 C143 440 148 435 158 432 C190 427 228 427 258 424 C284 420 310 410 345 410 C420 418 490 470 540 505 L545 545 C500 572 430 585 360 582 C320 580 285 578 262 574 C240 560 215 540 192 523 C172 510 155 501 140 496 C128 492 114 488 104 477 Z"/>
+    <path d="M141 471 C131 473 120 475 110 477" fill="none" stroke="{eye}" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M155 457 L194 447 C195 459 187 467 175 467 C164 467 157 463 155 457 Z" fill="{eye}"/>
+    <circle cx="176" cy="457" r="6.6"/>
+    <path d="M150 455 L199 442 L199 448 L152 461 Z"/>
+    <circle cx="173.6" cy="458.6" r="1.5" fill="{eye}"/>"""
 
 def finch(eye="#fff"):
-    """House finch in flight, heading left and looking slightly down: upper wing
-    raised in a broad fan, lower wing swept down and forward, tail fanned behind."""
-    upper = fan((300, 412), [(-103, 275), (-92, 305), (-82, 315), (-66, 302), (-50, 284), (-30, 272), (-11, 262), (12, 240)], 15)
-    lower = fan((290, 548), [(114, 414), (109, 430), (103, 426), (98, 396), (93, 358), (85, 333), (75, 312), (65, 288), (54, 267), (42, 249), (28, 238), (13, 231)], 17)
-    tail  = fan((540, 512), [(-31, 158), (-8, 180), (10, 191), (26, 203), (39, 228), (54, 236)], 8, 1.15)
+    """House finch in flight, heading left, after the reference photo: upper wing
+    raised, lower wing swept down and forward, tail fanned behind."""
+    upper = wing((330, 418), UPPER, -111, -2, 16, fingers=5)
+    lower = wing((300, 560), LOWER, 119, 34, 17, side=-1, fingers=5)
+    tail  = wing((520, 525), TAIL, -38, 64, 12, gap=.95, solid=.7)
+    forearm = '<path d="M330 420 L264 448 C262 390 252 300 242 224 L240 186 Z"/>'
     return f"""{upper}
     {lower}
     {tail}
-    <ellipse cx="388" cy="492" rx="196" ry="80" transform="rotate(8 388 492)"/>
+    {forearm}
     {head(eye)}"""
 
 LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 690 920" role="img" aria-labelledby="t">
