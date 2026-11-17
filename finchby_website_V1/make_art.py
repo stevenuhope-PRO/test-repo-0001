@@ -50,7 +50,7 @@ LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 690 920" role=
 
 # ------------------------------------------------------------------ crest
 def laurel():
-    cx, cy, r = 200, 300, 138
+    cx, cy, r = 200, 300, 140
     pt = lambda th: (cx + r * math.cos(math.radians(th)), cy + r * math.sin(math.radians(th)))
     leaf = "M0 0 C7 -6 17 -6 25 0 C17 6 7 6 0 0 Z"
     angs = [104 + i * 9.6 for i in range(13)]
@@ -59,8 +59,8 @@ def laurel():
     for i, th in enumerate(angs):
         x, y = pt(th)
         for off in (-34, 34):
-            parts.append(f'<path d="{leaf}" transform="translate({x:.1f} {y:.1f}) rotate({th+90+off:.1f}) scale({1-.025*i:.2f})"/>')
-    parts.append(f'<path d="{leaf}" transform="translate({x1:.1f} {y1:.1f}) rotate({angs[-1]+96:.1f}) scale(.7)"/>')
+            parts.append(f'<path d="{leaf}" transform="translate({x:.1f} {y:.1f}) rotate({th+90+off:.1f}) scale({1.15*(1-.025*i):.2f})"/>')
+    parts.append(f'<path d="{leaf}" transform="translate({x1:.1f} {y1:.1f}) rotate({angs[-1]+96:.1f}) scale(.8)"/>')
     return "\n      ".join(parts)
 
 # "Finchby" set in Grenze Gotisch (SIL Open Font License), converted to outlines so the
