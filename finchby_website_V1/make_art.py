@@ -70,52 +70,28 @@ NAME = "M10.80 -24.12L18.92 -24.12L18.40 -17.12L16.24 -17.12L15.80 -21.52L10.68 
 
 SHIELD = "M110 210 H290 V300 C290 360 250 400 200 425 C150 400 110 360 110 300 Z"
 
-def scroll(p0, c1, c2, p1, w0, r0, sweep=290, curl=1, bumps=4, outer=1, n=140):
-    """One lobe of mantling: a ribbon that runs along a curve, tapers, and ends in a
-    curl, its outer edge cut into pointed lobes like an acanthus leaf. curl picks the
-    side the end turns to, outer the side that is lobed. Returns the ribbon and a midrib."""
-    pts = []
-    for i in range(n):
-        t = i / n
-        pts.append(tuple((1-t)**3*a + 3*(1-t)**2*t*b + 3*(1-t)*t*t*c + t**3*d for a, b, c, d in zip(p0, c1, c2, p1)))
-    dx, dy = p1[0] - c2[0], p1[1] - c2[1]; L = math.hypot(dx, dy); dx, dy = dx/L, dy/L
-    nx, ny = -dy * curl, dx * curl
-    cx, cy = p1[0] + r0*nx, p1[1] + r0*ny
-    th0 = math.atan2(p1[1] - cy, p1[0] - cx)
-    sgn = 1 if (-math.sin(th0)*dx + math.cos(th0)*dy) > 0 else -1
-    m = 60
-    for i in range(m + 1):
-        u = i / m; th = th0 + sgn * math.radians(sweep) * u; r = r0 * (1 - .55*u)
-        pts.append((cx + r*math.cos(th), cy + r*math.sin(th)))
-    N = len(pts); left, right = [], []
-    for i, (x, y) in enumerate(pts):
-        (xa, ya), (xb, yb) = pts[max(i-1, 0)], pts[min(i+1, N-1)]
-        tx, ty = xb - xa, yb - ya; L = math.hypot(tx, ty) or 1; ox, oy = -ty/L, tx/L
-        u = i / (N - 1); w = w0 * (1 - u)**.7 + .6
-        fr = (bumps * u / .75) % 1
-        bump = .5 + (.42 * math.sin(math.pi * fr**1.5) if u < .75 else 0)   # each lobe swells to a soft point, then cuts back
-        a, b = (bump, .5) if outer > 0 else (.5, bump)
-        left.append(f"{x + ox*w*a:.1f} {y + oy*w*a:.1f}"); right.append(f"{x - ox*w*b:.1f} {y - oy*w*b:.1f}")
-    rib = " L".join(f"{x:.1f} {y:.1f}" for x, y in pts[2:int(N*.86)])
-    return (f'<path d="M{" L".join(left)} L{" L".join(reversed(right))} Z"/>'
-            f'<path d="M{rib}" fill="none" stroke-width=".9"/>')
+def ermine(x, y, k=1):
+    """One ermine spot: a tail with three dots above it, the fur of a royal lining."""
+    return (f'<g transform="translate({x} {y}) scale({k})" fill="{INK}" stroke="none">'
+            '<circle cx="-1.3" cy="-2.6" r=".75"/><circle cx="1.3" cy="-2.6" r=".75"/><circle cy="-3.9" r=".75"/>'
+            '<path d="M0 -2 C-.6 0 -1.5 1.6 -1.9 2.6 L0 1.7 L1.9 2.6 C1.5 1.6 .6 0 0 -2 Z"/></g>')
 
-def mantling():
-    """Mantling: the cloth that hangs from the helm, drawn as curling leaf-like scrolls."""
-    return "\n      ".join([
-        scroll((194, 160), (166, 136), (120, 134), (100, 168), 22, 11, 300, -1, 4, 1),
-        scroll((186, 180), (146, 172), (100, 190), (84, 236), 19, 12, 300, -1, 4, 1),
-        scroll((180, 202), (140, 210), (106, 240), (98, 292), 15, 9, 290, -1, 3, 1),
-    ])
+# Mantle (left half; mirrored for the right): cloth draped from the top of the helm over
+# the shield's upper corner, its end cut into points and turned back to show the ermine lining.
+MANTLE = f"""<path d="M200 142 C190 143 182 150 178 162 C172 180 148 192 124 200 C106 206 94 220 88 238 C84 252 82 266 82 282 L92 272 L95 296 L104 281 L110 292 L124 212 H200 Z" fill="{TINT}"/>
+    <path d="M110 205 C98 216 91 230 87 246 C84 258 82 270 82 282 L92 272 L95 296 L104 281 C99 262 100 236 112 214 Z" fill="#fff"/>
+    {ermine(92, 252)}{ermine(95, 276)}{ermine(103, 230, .9)}
+    <path d="M172 176 C150 192 130 204 118 214 M186 168 C176 186 150 202 124 214" fill="none" stroke-width=".9"/>"""
 
-HELM = """<path d="M15 -12 C21 -24 21 -40 12 -48 C5 -54 -7 -54 -14 -47 C-18 -43 -20 -37 -20 -31 L-25 -27 C-26 -22 -24 -17 -19 -14 L-13 -11 C-17 -7 -21 -3 -22 1 H22 C21 -3 19 -8 15 -12 Z"/>
-    <path d="M-23.5 -28.6 L-4 -30.2 L-4 -27.6 L-22.5 -26.4 Z" fill="{INK}" stroke-width="1"/>
-    <path d="M-2 -53 C-10 -47 -14 -40 -15 -32 M7 -27 C5 -20 0 -15 -7 -12.6 M-18 -7 H18 M-20.5 -3 H20.5" fill="none" stroke-width="1.1"/>
-    <path d="M-19 -21 h3 M-14 -20.2 h3 M-9 -19.6 h3" fill="none" stroke-width="1.3"/>
-    <circle cx="7" cy="-27" r="2"/>"""
+# Royal helm: gold, facing the viewer, with a barred face guard.
+HELM = f"""<path d="M-17 -12 C-21 -24 -20 -40 -12 -47 C-6 -52 6 -52 12 -47 C20 -40 21 -24 17 -12 L22 -3 C23 0 21 2 18 2 H-18 C-21 2 -23 0 -22 -3 Z" fill="url(#or)"/>
+    <path d="M-11 -37 C-6 -40 6 -40 11 -37 L10 -18 C6 -14 -6 -14 -10 -18 Z" fill="{INK}" stroke-width="1.2"/>
+    <path d="M-7.5 -38.6 V-15.6 M-3.8 -39.4 V-14.6 M0 -39.6 V-14.4 M3.8 -39.4 V-14.6 M7.5 -38.6 V-15.6" stroke="#fff" stroke-width="1.4" fill="none"/>
+    <path d="M0 -51 V-40 M-17 -12 C-8 -10 8 -10 17 -12 M-20 -6 H20" fill="none" stroke-width="1.1"/>
+    <circle cx="-15" cy="-27" r="1.6" fill="#fff"/><circle cx="15" cy="-27" r="1.6" fill="#fff"/>"""
 
 CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role="img" aria-labelledby="ct">
-  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel and mantling, beneath a helm with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
+  <title id="ct">Finchby crest: a shield in three parts showing an owl, a wing and an anchor, divided by a chevron with three buckles, framed by laurel and an ermine-lined mantle, beneath a royal helm with a finch in flight above it, the motto Grip Fast and the name Finchby</title>
   <defs>
     <!-- engraver's hatching: horizontal lines = blue, dots = gold -->
     <pattern id="az" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5 H5" stroke="{INK}" stroke-width=".8"/></pattern>
@@ -127,9 +103,9 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role
     <g id="buckle" fill="none" stroke="{INK}"><circle r="7" stroke-width="2.4" fill="#fff"/><path d="M-7 0 H5" stroke-width="2"/></g>
   </defs>
 
-  <!-- mantling, flowing from the helm on both sides -->
-  <g id="mantle" fill="{TINT}" stroke="{INK}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
-      {mantling()}
+  <!-- mantle, draped from the helm on both sides and lined with ermine -->
+  <g id="mantle" stroke="{INK}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+    {MANTLE}
   </g>
   <use href="#mantle" transform="translate(400 0) scale(-1 1)"/>
 
@@ -138,7 +114,7 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role
   <path d="M188 436 L212 444 M212 436 L188 444" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>
 
   <!-- crest: the finch -->
-  <g transform="translate(158.4 49.6) scale(.1)" fill="{INK}">
+  <g transform="translate(158.4 54.6) scale(.1)" fill="{INK}">
   {finch()}
   </g>
   <!-- shield: three fields -->
@@ -161,8 +137,8 @@ CREST = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 320 518" role
   </g>
   <path d="{SHIELD}" fill="none" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>
 
-  <!-- helm: steel, in profile, visor closed, facing the same way as the finch -->
-  <g transform="translate(200 212) scale(1.25)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+  <!-- helm: a royal helm, gold, facing the viewer, with a barred face guard -->
+  <g transform="translate(200 212) scale(1.4)" fill="#fff" stroke="{INK}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
     {HELM}
   </g>
 
