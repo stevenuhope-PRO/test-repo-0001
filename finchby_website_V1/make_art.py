@@ -26,6 +26,16 @@ def fan(root, feathers, n, overlap=1.25, solid=.9):
     out.append(f'<path d="M{" L".join(pts)} Z"/>')
     return f'<g transform="translate({root[0]} {root[1]})">' + "".join(out) + "</g>"
 
+def head(eye="#fff"):
+    """House-finch head in profile: domed crown, steep forehead and a short, deep,
+    conical seed-cracker's beak with a curved culmen, angled a touch below the
+    flight line. A clean gape line and a forward-set eye give it a focused look."""
+    return f"""<path d="M106 476 C107 473 109 470 111 467 C116 460 128 454 145 450 C149 430 164 413 191 407 C220 402 248 406 270 413 L312 406 L340 440 L340 540 L276 544 C238 538 194 524 166 497 C160 492 153 489 147 489 C133 489 116 486 108 480 C106 479 106 477 106 476 Z"/>
+    <path d="M147 471 C136 472 124 474 114 477" fill="none" stroke="{eye}" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="181" cy="443" r="9.5" fill="{eye}"/>
+    <circle cx="179.5" cy="443.5" r="6.8"/>
+    <circle cx="177" cy="441" r="1.9" fill="{eye}"/>"""
+
 def finch(eye="#fff"):
     """House finch in flight, heading left and looking slightly down: upper wing
     raised in a broad fan, lower wing swept down and forward, tail fanned behind."""
@@ -36,9 +46,7 @@ def finch(eye="#fff"):
     {lower}
     {tail}
     <ellipse cx="388" cy="492" rx="196" ry="80" transform="rotate(8 388 492)"/>
-    <circle cx="196" cy="466" r="57"/>
-    <path d="M150 432 L102 484 L158 506 Z"/>
-    <circle cx="174" cy="450" r="9" fill="{eye}"/>"""
+    {head(eye)}"""
 
 LOGO = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 690 920" role="img" aria-labelledby="t">
   <title id="t">Finchby — a finch in flight, wings spread</title>
