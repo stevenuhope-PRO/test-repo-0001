@@ -1,0 +1,430 @@
+{
+ "content": [
+  {
+   "id": "356a835",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Header"
+   },
+   "elements": [
+    {
+     "id": "d87eb55",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\">\n<style>\n:root{--f4-bg:#ffffff;--f4-tint:#f5f7fa;--f4-ink:#0b1f3a;--f4-text:#33425a;--f4-muted:#5d6b82;--f4-line:#e2e7ee;--f4-blue:#1553a1;--f4-blue-d:#0e3f7d;--f4-gold:#c08a1e;--f4-head:\"Manrope\",system-ui,sans-serif;--f4-sans:\"Inter\",system-ui,-apple-system,sans-serif}\nhtml{scroll-behavior:smooth}\nbody{margin:0;background:var(--f4-bg)}\n.f4{font-family:var(--f4-sans);color:var(--f4-text);font-size:17px;line-height:1.7;background:var(--f4-bg);box-sizing:border-box}\n.f4 *,.f4 *::before,.f4 *::after{box-sizing:border-box}\n.f4 a{color:inherit;text-decoration:none}\n.f4-wrap{max-width:1140px;margin:0 auto;padding:0 24px}\n.f4-sec{padding:104px 0}\n.f4-tint{background:var(--f4-tint)}\n.f4 h1,.f4 h2,.f4 h3{font-family:var(--f4-head);color:var(--f4-ink);margin:0;line-height:1.15;letter-spacing:-.02em}\n.f4 h1{font-size:clamp(38px,4.8vw,60px);font-weight:700}\n.f4 h2{font-size:clamp(28px,3.2vw,40px);font-weight:700;max-width:24ch}\n.f4 h3{font-size:19px;font-weight:600;letter-spacing:-.01em}\n.f4 p{margin:0}\n.f4-label{display:block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--f4-blue);margin-bottom:18px}\n.f4-label::before{content:\"\";display:inline-block;width:28px;height:2px;background:var(--f4-gold);vertical-align:middle;margin-right:12px}\n.f4-lede{font-size:19px;line-height:1.65;color:var(--f4-muted);max-width:60ch;margin-top:22px!important}\n.f4-btn{display:inline-block;padding:15px 28px;border-radius:6px;font-family:var(--f4-sans);font-weight:600;font-size:16px;border:1.5px solid var(--f4-ink);color:var(--f4-ink);cursor:pointer;transition:background .15s,color .15s,border-color .15s}\n.f4-btn:hover{background:var(--f4-ink);color:#fff}\n.f4-btn--primary{background:var(--f4-blue);border-color:var(--f4-blue);color:#fff!important}\n.f4-btn--primary:hover{background:var(--f4-blue-d);border-color:var(--f4-blue-d)}\n.f4-more{font-size:15px;font-weight:600;color:var(--f4-blue)!important}\n.f4-more::after{content:\" \u2192\"}\n.f4-more:hover{text-decoration:underline!important}\n/* header */\n.f4-head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--f4-line)}\n.f4-head .f4-wrap{display:flex;align-items:center;justify-content:space-between;height:76px}\n.f4-logo{display:flex;align-items:center;gap:10px;font-family:var(--f4-head);font-size:23px;font-weight:700;color:var(--f4-ink)!important;letter-spacing:-.02em}\n.f4-logo svg{width:28px;height:28px;color:var(--f4-gold)}\n.f4-nav{display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:var(--f4-ink)}\n.f4-nav a:not(.f4-btn):hover{color:var(--f4-blue)}\n.f4-nav .f4-btn{padding:11px 20px;font-size:15px}\n.f4-burger{display:none;background:none;border:0;font-size:26px;color:var(--f4-ink);cursor:pointer}\n/* hero */\n.f4-hero{padding:96px 0 104px;border-bottom:1px solid var(--f4-line)}\n.f4-hero .f4-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}\n.f4-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}\n.f4-cover{border:1px solid var(--f4-line);border-radius:10px;background:var(--f4-bg);box-shadow:0 24px 48px -32px rgba(11,31,58,.28)}\n.f4-cover__h{padding:20px 26px;border-bottom:1px solid var(--f4-line);font-family:var(--f4-head);font-weight:600;color:var(--f4-ink);font-size:17px}\n.f4-cover__g{padding:20px 26px;border-bottom:1px solid var(--f4-line)}\n.f4-cover__g span{display:block;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--f4-muted);margin-bottom:10px}\n.f4-cover ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}\n.f4-cover li{font-size:14.5px;font-weight:500;color:var(--f4-ink);background:var(--f4-tint);border:1px solid var(--f4-line);border-radius:4px;padding:5px 12px}\n.f4-cover__f{padding:18px 26px;font-size:15px;color:var(--f4-muted);background:var(--f4-tint);border-radius:0 0 10px 10px}\n.f4-cover__f b{color:var(--f4-ink);font-weight:600}\n/* position */\n.f4-position .f4-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px}\n.f4-position__q{font-family:var(--f4-head);font-size:clamp(22px,2.3vw,28px);line-height:1.45;color:var(--f4-ink);font-weight:500;letter-spacing:-.01em}\n.f4-principles{display:grid;gap:0}\n.f4-principles div{padding:22px 0;border-top:1px solid var(--f4-line)}\n.f4-principles div:last-child{border-bottom:1px solid var(--f4-line)}\n.f4-principles p{margin-top:6px;font-size:16px;color:var(--f4-muted)}\n/* services */\n.f4-areas{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}\n.f4-area{background:var(--f4-bg);border:1px solid var(--f4-line);border-top:3px solid var(--f4-blue);border-radius:8px;padding:32px 30px}\n.f4-area>span{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--f4-gold)}\n.f4-area>h3{font-size:24px;font-weight:700;margin:8px 0 6px}\n.f4-area>p{font-size:15.5px;color:var(--f4-muted)}\n.f4-svc{padding:20px 0 0;margin-top:20px;border-top:1px solid var(--f4-line)}\n.f4-svc p{font-size:15.5px;color:var(--f4-muted);margin:6px 0 8px}\n/* approach */\n.f4-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:56px}\n.f4-step{border-top:2px solid var(--f4-ink);padding-top:22px}\n.f4-step span{font-family:var(--f4-head);font-size:14px;font-weight:700;color:var(--f4-gold);letter-spacing:.06em}\n.f4-step h3{margin:8px 0}\n.f4-step p{font-size:15.5px;color:var(--f4-muted)}\n/* engagements */\n.f4-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}\n.f4-plan{background:var(--f4-bg);border:1px solid var(--f4-line);border-radius:8px;padding:34px 30px;display:flex;flex-direction:column}\n.f4-plan--lead{border-color:var(--f4-blue);box-shadow:0 0 0 1px var(--f4-blue)}\n.f4-plan__t{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--f4-muted);margin-bottom:10px}\n.f4-plan h3{font-size:22px;font-weight:700}\n.f4-plan__p{font-family:var(--f4-head);font-size:26px;font-weight:700;color:var(--f4-ink);margin:16px 0 4px}\n.f4-plan__p small{font-family:var(--f4-sans);font-size:15px;font-weight:400;color:var(--f4-muted)}\n.f4-plan>p{font-size:15.5px;color:var(--f4-muted)}\n.f4-plan ul{list-style:none;margin:22px 0 28px;padding:0;flex:1;font-size:15.5px}\n.f4-plan li{padding:10px 0 10px 24px;border-top:1px solid var(--f4-line);position:relative}\n.f4-plan li::before{content:\"\";position:absolute;left:2px;top:19px;width:8px;height:8px;border-radius:50%;background:var(--f4-blue)}\n.f4-plan .f4-btn{text-align:center}\n/* commitments */\n.f4-commit .f4-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}\n.f4-commit dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:32px 40px}\n.f4-commit dt{font-family:var(--f4-head);font-weight:600;font-size:18px;color:var(--f4-ink);padding-top:18px;border-top:2px solid var(--f4-gold)}\n.f4-commit dd{margin:8px 0 0;font-size:15.5px;color:var(--f4-muted)}\n.f4-sectors{margin-top:28px;font-size:15.5px;color:var(--f4-muted)}\n.f4-sectors b{color:var(--f4-ink);font-weight:600}\n/* faq */\n.f4-faq .f4-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}\n.f4-faq details{border-top:1px solid var(--f4-line);padding:22px 0}\n.f4-faq details:last-child{border-bottom:1px solid var(--f4-line)}\n.f4-faq summary{cursor:pointer;font-family:var(--f4-head);font-size:18px;font-weight:600;color:var(--f4-ink);list-style:none;display:flex;justify-content:space-between;gap:20px}\n.f4-faq summary::-webkit-details-marker{display:none}\n.f4-faq summary::after{content:\"+\";color:var(--f4-blue);font-size:22px;line-height:1.1;font-weight:400}\n.f4-faq details[open] summary::after{content:\"\u2013\"}\n.f4-faq details p{margin-top:12px;font-size:16px;color:var(--f4-muted);max-width:62ch}\n/* contact */\n.f4-contact .f4-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}\n.f4-contact address{font-style:normal;margin-top:32px;padding-top:24px;border-top:1px solid var(--f4-line);font-size:16px}\n.f4-contact address a{color:var(--f4-blue);font-weight:600}\n.f4-form{background:var(--f4-bg);border:1px solid var(--f4-line);border-radius:10px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:16px;box-shadow:0 24px 48px -32px rgba(11,31,58,.25)}\n.f4-form label{font-size:14px;font-weight:600;color:var(--f4-ink);display:grid;gap:6px}\n.f4-form .full{grid-column:1/-1}\n.f4-form input,.f4-form select,.f4-form textarea{font:inherit;font-size:16px;font-weight:400;padding:12px 14px;border:1px solid #cdd5e0;border-radius:6px;background:#fff;color:var(--f4-ink);width:100%}\n.f4-form input:focus,.f4-form select:focus,.f4-form textarea:focus{outline:2px solid var(--f4-blue);outline-offset:1px;border-color:var(--f4-blue)}\n.f4-form small{grid-column:1/-1;font-size:13.5px;color:var(--f4-muted)}\n/* footer */\n.f4-foot{padding:64px 0 32px;font-size:15px;border-top:1px solid var(--f4-line);color:var(--f4-muted)}\n.f4-foot .f4-wrap{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}\n.f4-foot h3{font-family:var(--f4-sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--f4-ink);margin-bottom:14px}\n.f4-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}\n.f4-foot a:hover{color:var(--f4-blue)}\n.f4-foot__legal{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--f4-line);padding-top:24px;margin-top:20px;font-size:14px}\n@media(max-width:960px){\n.f4-sec{padding:68px 0}\n.f4-hero{padding:60px 0 68px}\n.f4-hero .f4-wrap,.f4-position .f4-wrap,.f4-commit .f4-wrap,.f4-faq .f4-wrap,.f4-contact .f4-wrap{grid-template-columns:1fr;gap:40px}\n.f4-areas,.f4-plans{grid-template-columns:1fr}\n.f4-steps{grid-template-columns:1fr 1fr}\n.f4-foot .f4-wrap{grid-template-columns:1fr 1fr}\n.f4-burger{display:block}\n.f4-nav{display:none;position:absolute;top:76px;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:20px 24px;border-bottom:1px solid var(--f4-line);gap:16px}\n.f4-nav.is-open{display:flex}\n}\n@media(max-width:560px){.f4-steps,.f4-commit dl,.f4-form,.f4-foot .f4-wrap{grid-template-columns:1fr}}\n</style>\n<header class=\"f4 f4-head\">\n  <div class=\"f4-wrap\">\n    <a class=\"f4-logo\" href=\"#top\" aria-label=\"Finchby home\">\n      <svg viewBox=\"0 0 32 32\" aria-hidden=\"true\"><path d=\"M5 21c0-8 5.5-13 12.500-13 3 0 5.200 1.200 6.300 3.200L29 12.500l-4.200 3C24.500 22.500 19.500 27 13 27H4l5.200-4.200C6.800 22.300 5 22 5 21z\" fill=\"currentColor\"/><circle cx=\"20.500\" cy=\"12.800\" r=\"1.300\" fill=\"#0b1f3a\"/></svg>\n      Finchby\n    </a>\n    <button class=\"f4-burger\" aria-label=\"Toggle menu\" onclick=\"document.getElementById('f4-nav').classList.toggle('is-open')\">\u2630</button>\n    <nav class=\"f4-nav\" id=\"f4-nav\" aria-label=\"Primary\">\n      <a href=\"#services\">Services</a>\n      <a href=\"#approach\">Approach</a>\n      <a href=\"#engagements\">Engagements</a>\n      <a href=\"#faq\">FAQ</a>\n      <a class=\"f4-btn f4-btn--primary\" href=\"#contact\">Request a consultation</a>\n    </nav>\n  </div>\n</header>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "58bb363",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Top"
+   },
+   "elements": [
+    {
+     "id": "86d86ec",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-hero\" id=\"top\">\n  <div class=\"f4-wrap\">\n    <div>\n      <span class=\"f4-label\">SEO and AI search visibility</span>\n      <h1>Be found wherever your customers search.</h1>\n      <p class=\"f4-lede\">Finchby is an AI SEO agency. We help businesses earn lasting visibility in search engines and in the AI assistants their customers now consult, through rigorous technical work, authoritative content and clear reporting.</p>\n      <div class=\"f4-cta\">\n        <a class=\"f4-btn f4-btn--primary\" href=\"#contact\">Request a consultation</a>\n        <a class=\"f4-btn\" href=\"#services\">Our services</a>\n      </div>\n    </div>\n    <aside class=\"f4-cover\" aria-label=\"Channels Finchby covers\">\n      <div class=\"f4-cover__h\">Where buying decisions begin today</div>\n      <div class=\"f4-cover__g\"><span>Search engines</span><ul><li>Google Search</li><li>Bing</li><li>Google Maps</li></ul></div>\n      <div class=\"f4-cover__g\"><span>AI answers and assistants</span><ul><li>Google AI Overviews</li><li>ChatGPT</li><li>Gemini</li><li>Perplexity</li><li>Copilot</li><li>Claude</li></ul></div>\n      <div class=\"f4-cover__f\"><b>One program.</b> We manage your visibility across all of them.</div>\n    </aside>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "7dff301",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Position"
+   },
+   "elements": [
+    {
+     "id": "07ccc2f",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-sec f4-position\" id=\"position\">\n  <div class=\"f4-wrap\">\n    <div>\n      <span class=\"f4-label\">Our position</span>\n      <p class=\"f4-position__q\">Search has expanded from a page of results to a conversation. The organizations that stay visible have technically sound websites, demonstrable expertise and a consistent presence in the sources AI systems rely on. That is the work we do.</p>\n    </div>\n    <div class=\"f4-principles\">\n      <div><h3>Evidence before opinion</h3><p>Every recommendation is grounded in your data and in benchmarks against the competitors you name.</p></div>\n      <div><h3>Complete transparency</h3><p>You see what was done, why it was done and what it produced. Nothing is hidden behind jargon.</p></div>\n      <div><h3>Accountable to outcomes</h3><p>We report on qualified traffic, enquiries and revenue, not on activity for its own sake.</p></div>\n    </div>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "330e922",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Services"
+   },
+   "elements": [
+    {
+     "id": "527506e",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-sec f4-tint\" id=\"services\">\n  <div class=\"f4-wrap\">\n    <span class=\"f4-label\">Services</span>\n    <h2>A complete search practice, organized around three priorities.</h2>\n    <p class=\"f4-lede\">Engage us for a single service or for a managed program. Each engagement begins with an assessment so that effort is directed where it will matter most.</p>\n    <div class=\"f4-areas\">\n      <div class=\"f4-area\">\n        <span>Practice area 01</span><h3>Foundation</h3><p>A website that search engines and AI systems can read, trust and measure.</p>\n        <div class=\"f4-svc\"><h3>Technical SEO</h3><p>Site audits, Core Web Vitals, crawl and indexation, AI crawler access and managed migrations.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n        <div class=\"f4-svc\"><h3>Schema &amp; Entity Optimization</h3><p>Structured data and knowledge graph work that define precisely who you are and what you offer.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n        <div class=\"f4-svc\"><h3>Analytics &amp; Reporting</h3><p>Reliable measurement of rankings, organic revenue and share of voice in AI answers.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n      </div>\n      <div class=\"f4-area\">\n        <span>Practice area 02</span><h3>Visibility</h3><p>Content and optimization that earn rankings and citations.</p>\n        <div class=\"f4-svc\"><h3>AI Search Visibility Audit</h3><p>An assessment of how AI assistants describe your organization, which competitors they cite and why.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n        <div class=\"f4-svc\"><h3>Generative Engine Optimization</h3><p>GEO and answer engine optimization that improve how often AI systems reference and recommend you.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n        <div class=\"f4-svc\"><h3>Content Strategy &amp; Creation</h3><p>Topical authority planning and expert-led content written to inform buyers and satisfy search intent.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n      </div>\n      <div class=\"f4-area\">\n        <span>Practice area 03</span><h3>Authority</h3><p>The reputation signals that determine who is trusted and recommended.</p>\n        <div class=\"f4-svc\"><h3>Digital PR &amp; Link Building</h3><p>Earned coverage, quality backlinks and brand mentions in respected industry publications.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n        <div class=\"f4-svc\"><h3>Local SEO</h3><p>Google Business Profile management, reviews, citations and location pages for regional visibility.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n        <div class=\"f4-svc\"><h3>E-commerce SEO</h3><p>Product and category optimization, product schema and merchant feeds for search and AI shopping.</p><a class=\"f4-more\" href=\"#contact\">Learn more</a></div>\n      </div>\n    </div>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "a56f889",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Approach"
+   },
+   "elements": [
+    {
+     "id": "6db0bd7",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-sec\" id=\"approach\">\n  <div class=\"f4-wrap\">\n    <span class=\"f4-label\">Approach</span>\n    <h2>A disciplined method, applied consistently.</h2>\n    <div class=\"f4-steps\">\n      <div class=\"f4-step\"><span>01</span><h3>Assessment</h3><p>We benchmark your technical health, content, authority and AI visibility against your principal competitors.</p></div>\n      <div class=\"f4-step\"><span>02</span><h3>Strategy</h3><p>You receive a written 90-day roadmap, prioritized by commercial impact and effort required.</p></div>\n      <div class=\"f4-step\"><span>03</span><h3>Implementation</h3><p>Our team delivers technical improvements, content and digital PR each month, with your approval at every stage.</p></div>\n      <div class=\"f4-step\"><span>04</span><h3>Measurement</h3><p>Monthly reporting on rankings, enquiries and AI citations informs the priorities for the period ahead.</p></div>\n    </div>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "124013d",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Engagements"
+   },
+   "elements": [
+    {
+     "id": "957f632",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-sec f4-tint\" id=\"engagements\">\n  <div class=\"f4-wrap\">\n    <span class=\"f4-label\">Engagements</span>\n    <h2>Three ways to work with us.</h2>\n    <!-- PLACEHOLDER PRICING: replace with real prices before launch -->\n    <div class=\"f4-plans\">\n      <div class=\"f4-plan\"><div class=\"f4-plan__t\">Fixed scope</div><h3>Audit &amp; Roadmap</h3><div class=\"f4-plan__p\">From $2,500</div><p>A clear view of your current position and a plan to improve it.</p><ul><li>Technical SEO audit</li><li>AI search visibility audit</li><li>Competitor gap analysis</li><li>Prioritized 90-day roadmap</li><li>Findings presentation</li></ul><a class=\"f4-btn\" href=\"#contact\">Request an audit</a></div>\n      <div class=\"f4-plan f4-plan--lead\"><div class=\"f4-plan__t\" style=\"color:var(--f4-blue)\">Monthly program \u00b7 most requested</div><h3>Managed SEO Program</h3><div class=\"f4-plan__p\">From $3,500 <small>per month</small></div><p>Ongoing SEO and GEO delivered by a dedicated team.</p><ul><li>Audit &amp; Roadmap included</li><li>Monthly technical and on-page work</li><li>Four expert content pieces per month</li><li>Schema and entity optimization</li><li>AI visibility tracking and monthly reporting</li></ul><a class=\"f4-btn f4-btn--primary\" href=\"#contact\">Request a consultation</a></div>\n      <div class=\"f4-plan\"><div class=\"f4-plan__t\">Tailored scope</div><h3>Enterprise Program</h3><div class=\"f4-plan__p\">Custom</div><p>For competitive markets and multi-location organizations.</p><ul><li>Managed SEO Program included</li><li>Digital PR and link building</li><li>Local or e-commerce SEO at scale</li><li>Dedicated senior strategist</li><li>Quarterly executive reviews</li></ul><a class=\"f4-btn\" href=\"#contact\">Request a proposal</a></div>\n    </div>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "f642ee8",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Commitments"
+   },
+   "elements": [
+    {
+     "id": "cb0b36a",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-sec f4-commit\" id=\"commitments\">\n  <div class=\"f4-wrap\">\n    <div>\n      <span class=\"f4-label\">Working with Finchby</span>\n      <h2>What you can expect from us.</h2>\n      <p class=\"f4-sectors\"><b>Sectors we serve:</b> B2B software, professional services, healthcare, legal, financial services, e-commerce, home services and multi-location businesses.</p>\n    </div>\n    <dl>\n      <div><dt>A named strategist</dt><dd>One senior point of contact who knows your business and is accountable for the program.</dd></div>\n      <div><dt>A written plan first</dt><dd>You approve a documented roadmap before any ongoing engagement begins.</dd></div>\n      <div><dt>Plain-language reporting</dt><dd>Monthly reports that explain results and next steps without requiring SEO expertise.</dd></div>\n      <div><dt>Ownership of your assets</dt><dd>All content, data and accounts created during the engagement remain yours.</dd></div>\n    </dl>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "885a1b3",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Faq"
+   },
+   "elements": [
+    {
+     "id": "160a1f2",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-sec f4-tint f4-faq\" id=\"faq\">\n  <div class=\"f4-wrap\">\n    <div><span class=\"f4-label\">Frequently asked questions</span><h2>Considered answers to common questions.</h2></div>\n    <div>\n      <details open><summary>Is SEO still a sound investment now that people use AI assistants?</summary><p>Yes. AI assistants and AI Overviews draw on the same web that search engines index. Strong SEO is the foundation for being cited in AI answers, and traditional search continues to drive the majority of website traffic.</p></details>\n      <details><summary>What is generative engine optimization?</summary><p>Generative engine optimization (GEO) improves how often and how accurately AI systems such as ChatGPT, Gemini and Perplexity mention and cite your organization. It extends SEO with a focus on entities, citations and answer-ready content.</p></details>\n      <details><summary>How do you measure visibility in AI answers?</summary><p>We track a defined set of questions your customers ask across the major AI assistants and record how often your organization is mentioned, cited and recommended relative to competitors.</p></details>\n      <details><summary>When should we expect to see results?</summary><p>Technical improvements can show an effect within weeks. Content and authority work typically builds over three to six months. Your roadmap sets expectations and we report progress monthly.</p></details>\n      <details><summary>Do you guarantee rankings or AI citations?</summary><p>No reputable firm can. We commit to a transparent plan, measurable work each month and reporting tied to enquiries and revenue.</p></details>\n      <details><summary>Can you work with our existing website and team?</summary><p>Yes. We work with WordPress and most major platforms, and can implement changes directly or in collaboration with your developers and writers.</p></details>\n    </div>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "57a78c1",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Contact"
+   },
+   "elements": [
+    {
+     "id": "827d5e8",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<section class=\"f4 f4-sec f4-contact\" id=\"contact\">\n  <div class=\"f4-wrap\">\n    <div>\n      <span class=\"f4-label\">Contact</span>\n      <h2>Request a consultation.</h2>\n      <p class=\"f4-lede\">Tell us about your organization and objectives. We will respond within two business days with initial observations on your search and AI visibility, and suggested next steps.</p>\n      <address>Prefer email? Write to <a href=\"mailto:hello@finchby.ai\">hello@finchby.ai</a></address>\n    </div>\n    <!-- In WordPress: replace with the Elementor Form widget -->\n    <form class=\"f4-form\" action=\"#\" method=\"post\">\n      <label>Full name<input type=\"text\" name=\"name\" autocomplete=\"name\" required></label>\n      <label>Company<input type=\"text\" name=\"company\" autocomplete=\"organization\" required></label>\n      <label>Work email<input type=\"email\" name=\"email\" autocomplete=\"email\" required></label>\n      <label>Website<input type=\"url\" name=\"website\" placeholder=\"https://\" required></label>\n      <label class=\"full\">Area of interest<select name=\"service\"><option>AI Search Visibility Audit</option><option>Managed SEO Program</option><option>Technical SEO</option><option>Content Strategy</option><option>Digital PR &amp; Link Building</option><option>Local or E-commerce SEO</option><option>Not yet sure</option></select></label>\n      <label class=\"full\">Objectives<textarea name=\"message\" rows=\"4\"></textarea></label>\n      <button class=\"f4-btn f4-btn--primary full\" type=\"submit\">Submit request</button>\n      <small>We use your details only to respond to this request.</small>\n    </form>\n  </div>\n</section>"
+     },
+     "elements": []
+    }
+   ]
+  },
+  {
+   "id": "58a8a97",
+   "elType": "container",
+   "isInner": false,
+   "settings": {
+    "content_width": "full",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0"
+    },
+    "_title": "Footer"
+   },
+   "elements": [
+    {
+     "id": "51ae255",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<footer class=\"f4 f4-foot\">\n  <div class=\"f4-wrap\">\n    <div><a class=\"f4-logo\" href=\"#top\">Finchby</a><p style=\"margin-top:14px;max-width:34ch\">Search engine optimization and AI search visibility for organizations that need to be found.</p></div>\n    <div><h3>Services</h3><ul><li><a href=\"#services\">AI Search Visibility Audit</a></li><li><a href=\"#services\">Generative Engine Optimization</a></li><li><a href=\"#services\">Technical SEO</a></li><li><a href=\"#services\">Content Strategy</a></li><li><a href=\"#services\">Digital PR</a></li><li><a href=\"#services\">Local SEO</a></li></ul></div>\n    <div><h3>Firm</h3><ul><li><a href=\"#position\">Our position</a></li><li><a href=\"#approach\">Approach</a></li><li><a href=\"#engagements\">Engagements</a></li><li><a href=\"#faq\">FAQ</a></li></ul></div>\n    <div><h3>Contact</h3><ul><li><a href=\"mailto:hello@finchby.ai\">hello@finchby.ai</a></li><li><a href=\"#contact\">Request a consultation</a></li></ul></div>\n    <div class=\"f4-foot__legal\"><span>\u00a9 2026 Finchby. All rights reserved.</span><span>Privacy Policy \u00b7 Terms of Service</span></div>\n  </div>\n</footer>"
+     },
+     "elements": []
+    }
+   ]
+  }
+ ],
+ "page_settings": {
+  "template": "elementor_canvas"
+ },
+ "version": "0.4",
+ "title": "Finchby V4 Home",
+ "type": "page"
+}

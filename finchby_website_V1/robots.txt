@@ -1,0 +1,5 @@
+# All crawlers welcome, AI engines included.
+User-agent: *
+Allow: /
+
+Sitemap: https://finchby.ai/sitemap.xml
