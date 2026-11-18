@@ -93,7 +93,7 @@ To reveal a service later: in WordPress, change its badge text from "Coming soon
 - **The case study** is anonymized ("a stone fabricator in Central Texas"). Ask the client before
   naming him, and before quoting any figures.
 - **Tagline:** "Be the business AI recommends." is set once as `TAGLINE` in `build.py`.
-- **Crest:** uses the Leslie motto *Grip Fast*; the site says it is a company emblem, not a grant of arms.
+- **Crest:** the site says it is a company emblem, not a grant of arms.
 - **Client story figures** ("1 of 13", "4 list sites") come from your Victory baseline; get the
   client's agreement before publishing them.
 - **Fees** are not shown.
